@@ -30,9 +30,9 @@ int         ft_check_line(char *line)
     bool = 0;
     if (!line)
         return (0);
-    while (line[i] == '0' || line[i] == '1' || line[i] == ' ' || line[i] == '2' || line[i] == '\t' || line[i] == 'S')
+    while (line[i] == '0' || line[i] == '1' || line[i] == ' ' || line[i] == '2' || line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
     {
-        if (line[i] == '0' || line[i] == '1' || line[i] == 'S')
+        if (line[i] == '0' || line[i] == '1' || line[i] == 'S' || line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
             bool = 1;
         if ((line[i + 1] == '\n' || line[i + 1] == 0) && i > 1 && bool == 1)
             return (1);
@@ -52,16 +52,8 @@ t_list      *ft_lst_fill(int fd)
         line = get_next_line_2(fd, &line);
     while (ft_check_line(line) == 1)
     {
-          lst = ft_lst_fill_2(lst, line);
+        lst = ft_lst_fill_2(lst, line);
         line = get_next_line_2(fd, &line);
-    }
-    while (lst)
-    {
-    if (lst->content)
-      printf("%s\n", lst->content);
-      lst = lst->next;
-      //printf("%s\n", lst->content);
-      //lst = lst->next;
     }
     return (lst);
 }
@@ -80,14 +72,43 @@ int         ft_parse_count(char *str)
     return (count);
 }
 
-void        ft_parse_init(char *str)
+void        ft_print_tab(int **tab)
 {
-    //int     i;
+    int i;
+    int j;
+
+    i = 0;
+    while (tab[i])
+    {
+        j = 0;
+        while (tab[i][j])
+        {
+            printf("%d", tab[i][j]);
+            j++;
+        }
+         printf("\n");
+        i++;
+    }
+    printf("\n");
+}
+
+t_map        ft_parse_init(char *str)
+{
+    int     i;
     int     fd;
     t_list  *lst;
+    t_map   start;
+    int     **tab;
+    int     a;
 
-    //i = ft_parse_count(str);
-    printf("%s\n", str);
+    i = ft_parse_count(str);
     fd = open(str, O_RDONLY);
     lst = ft_lst_fill(fd);
+    tab = ft_int_tab_fill(lst, i);
+    start.start = 0;
+    ft_print_tab(tab);
+    start = ft_fill_start_struct(tab, i);
+    a = ft_test_map(start.tab);
+    printf("%d\n", a);
+    return (start);
 }

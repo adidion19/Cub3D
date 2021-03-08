@@ -30,8 +30,16 @@ typedef struct                  s_list
         struct s_list   *next;
 }                               t_list;
 
+typedef struct                  s_map
+{
+        int             **tab;
+        int             x;
+        int             y;
+        int             start;
+}                               t_map;
+
 int             ft_parse_count(char *str);  
-void            ft_parse_init(char *str);
+t_map            ft_parse_init(char *str);
 int		ft_strlen(char *str);
 char	        *ft_strdup(const char *src);
 char	        *ft_strjoin(char const *s1, char const *s2);
@@ -55,5 +63,12 @@ void            ft_lstiter(t_list *lst, int (*f)(const char*, ...));
 t_list          *ft_lstlast(t_list *lst);
 t_list          *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int             ft_lstsize(t_list *lst);
+int             **ft_int_tab_fill(t_list *lst, int i);
+int             *ft_fill_one_entry(char *str, int **a);
+int             ft_value_int(char c);
+int             *ft_free_tab(int **a);
+t_map           ft_fill_start_struct(int **tab, int a);
+void            ft_print_tab(int **tab);
+int             ft_test_map(int **tab);
 
 #endif
