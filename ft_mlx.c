@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill_start_struct.c                             :+:      :+:    :+:   */
+/*   ft_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adidion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/03 10:15:36 by adidion           #+#    #+#             */
-/*   Updated: 2021/03/08 12:05:24 by adidion          ###   ########.fr       */
+/*   Created: 2021/03/09 13:48:43 by adidion           #+#    #+#             */
+/*   Updated: 2021/03/09 13:48:46 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-t_map			ft_fill_start_struct(int **tab, int a)
+int         ft_mlx(t_map start)
 {
-	int		i;
-	int		j;
-	t_map	start;
+    void *mlx;
+    void *win;
 
-	start.tab = tab;
-	i = 0;
-	j = 0;
-	while (tab[i] && a--)
-	{
-		j = 0;
-		while (tab[i][j])
-		{
-			if ((tab[i][j] >= 3 && tab[i][j] <= 6) || tab[i][j] == 5)
-			{
-				start.start = tab[i][j];
-				start.x = i;
-				start.y = j;
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return (start);
+    mlx = mlx_init();
+    win = mlx_new_window(mlx, start.ll, start.l, "cub3D");
+    mlx_loop(mlx);
+    return (1);
 }

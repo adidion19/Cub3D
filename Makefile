@@ -6,7 +6,7 @@
 #    By: adidion <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/23 10:35:43 by adidion           #+#    #+#              #
-#    Updated: 2021/03/08 11:39:26 by adidion          ###   ########.fr        #
+#    Updated: 2021/03/09 15:22:33 by adidion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ SRCS =	ft_parse.c\
 		ft_fill_start_struct.c\
 		ft_test_map.c\
 		main.c\
+		ft_mlx.c\
+		ft_window_size.c\
+		ft_atoi.c\
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -31,7 +34,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME) 
 
 $(NAME) : $(OBJS) 
-	gcc -o $(NAME) $(OBJS)  
+	gcc -lmlx -framework OpenGL -framework Appkit -o $(NAME) $(OBJS)
 
 clean: 
 	rm -f $(OBJS)
