@@ -65,6 +65,5 @@ int			ft_test_ext(char *str)
 			if (str[++i] == 'b')
 				if (!str[i + 1])
 					return (1);
-	printf("Error\nLe fichier de map doit finir par \".cub\"\n"); 
 	return (0);
 }

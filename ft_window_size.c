@@ -48,7 +48,24 @@ t_list		*ft_lst_fill_3(int fd)
 	return (lst);
 }
 
-t_map       ft_window_size(t_map start, int fd)
+t_map       ft_text(char *file, t_map start)
+{
+    t_list  *lst;
+    int     fd;
+
+    fd = open(file, O_RDONLY);
+    lst = ft_lst_fill_3(fd);
+    start.n_texture = ft_n_texture(lst);
+    start.s_texture = ft_s_texture(lst);
+    start.e_texture = ft_e_texture(lst);
+    start.w_texture = ft_w_texture(lst);
+    start.sprite_texture = ft_sprite_texture(lst);
+    start = ft_colours_floor(start, lst);
+    start = ft_colours_cell(start, lst);
+    return (start);
+}
+
+t_map       ft_window_size(char *file, t_map start, int fd)
 {
     char    *str;
     t_list *lst;
@@ -69,5 +86,6 @@ t_map       ft_window_size(t_map start, int fd)
         i++;
     if (str[i] >= '1' && str[i] <= '9')
         start.l = ft_atoi(((char*)str) + i);
+    start = ft_text(file, start);
     return (start);
 }

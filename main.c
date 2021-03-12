@@ -23,6 +23,8 @@ int		main(int ac, char **av)
 		start = ft_parse_init(av[1]);
 	else if (ac == 1 || ac > 3)
 		printf("Error\nNombre d'arguments invalide\n");
+	if (ft_error(start) == 0)
+		return (0);
 	ft_mlx(start);
 	return (0);
 }

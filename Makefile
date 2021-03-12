@@ -24,6 +24,8 @@ SRCS =	ft_parse.c\
 		ft_mlx.c\
 		ft_window_size.c\
 		ft_atoi.c\
+		ft_texture.c\
+		ft_colours.c\
 
 CFLAGS = -Wall -Wextra -Werror
 

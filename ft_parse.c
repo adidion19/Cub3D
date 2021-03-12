@@ -106,7 +106,7 @@ t_map		ft_parse_init(char *str)
 	i = ft_parse_count(str);
 	if (!ft_test_ext(str))
 	{
-		start.start = 0;
+		start.ext = 1;
 		return (start);
 	}
 	fd = open(str, O_RDONLY);
@@ -116,12 +116,11 @@ t_map		ft_parse_init(char *str)
 	start = ft_fill_start_struct(tab, i);
 	if (!(ft_test_map(start.tab)))
 	{
-		start.start = 0;
-		printf("Error\nmap invalide\n");
+		start.tab = 0;
 		return (start);
 	}
 	close(fd);
 	fd = open(str, O_RDONLY);
-	start = ft_window_size(start, fd);
+	start = ft_window_size(str, start, fd);
 	return (start);
 }

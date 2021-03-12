@@ -12,9 +12,9 @@
 
 #ifndef CUBE_H
 # define CUBE_H
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 246
 # ifndef OPEN_MAX
-#  define OPEN_MAX 256
+#  define OPEN_MAX 32
 # endif
 # define INT_MAX 2147483647
 # include <stdio.h>
@@ -40,6 +40,18 @@ typedef struct	s_map
 	int			start;
 	int			l;
 	int			ll;
+	char		*n_texture;
+	char		*s_texture;
+	char		*e_texture;
+	char		*w_texture;
+	char		*sprite_texture;
+	int			floor_r;
+	int			floor_g;
+	int			floor_b;
+	int			cell_r;
+	int			cell_g;
+	int			cell_b;
+	int			ext;
 }				t_map;
 
 int				ft_parse_count(char *str);
@@ -77,7 +89,17 @@ void			ft_print_tab(int **tab);
 int				ft_test_map(int **tab);
 int				ft_test_ext(char *str);
 int         	ft_mlx(t_map start);
-t_map       	ft_window_size(t_map start, int fd);
+t_map       	ft_window_size(char *file, t_map start, int fd);
 int				ft_atoi(const char *str);
+char        	*ft_n_texture(t_list *lst);
+char        	*ft_s_texture(t_list *lst);
+char        	*ft_e_texture(t_list *lst);
+char        	*ft_w_texture(t_list *lst);
+char        	*ft_sprite_texture(t_list *lst);
+t_map       	ft_colours_floor(t_map start, t_list *lst);
+t_map       	ft_triple_atoi_floor(t_map start, char *str);
+t_map       	ft_colours_cell(t_map start, t_list *lst);
+t_map       	ft_triple_atoi_cell(t_map start, char *str);
+int         	ft_error(t_map start);
 
 #endif
