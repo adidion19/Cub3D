@@ -54,6 +54,53 @@ typedef struct	s_map
 	int			ext;
 }				t_map;
 
+typedef struct	s_mlx
+{
+	void		*mlx;
+	void		*win;
+}				t_mlx;
+
+typedef	struct	s_data
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data;
+
+typedef struct	s_rcst
+{
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plan_x;
+	double		plan_y;
+	double		old_time;
+	double		cam_time;
+	double		cam_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int 		map_x;
+	int			map_y;
+	double		side_dest_x;
+	double		side_dest_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			line_hight;
+	int			draw_start;
+	int			draw_end;
+	t_mlx		window;
+	t_map		start;
+	t_data		data;
+}				t_rcst;
+
 int				ft_parse_count(char *str);
 t_map			ft_parse_init(char *str);
 int				ft_strlen(char *str);
@@ -101,5 +148,10 @@ t_map       	ft_triple_atoi_floor(t_map start, char *str);
 t_map       	ft_colours_cell(t_map start, t_list *lst);
 t_map       	ft_triple_atoi_cell(t_map start, char *str);
 int         	ft_error(t_map start);
+t_rcst        	ft_rcst_fill(t_mlx window, t_map start, t_rcst ray_info);
+t_rcst			ft_hook(t_rcst ray_info, t_mlx window);
+t_rcst      	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info);
+void        	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+t_data      	ft_data_fill(t_data img);
 
 #endif

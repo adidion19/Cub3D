@@ -26,6 +26,8 @@ SRCS =	ft_parse.c\
 		ft_atoi.c\
 		ft_texture.c\
 		ft_colours.c\
+		ft_rcst_fill.c\
+		ft_hook.c\
 
 CFLAGS = -Wall -Wextra -Werror
 

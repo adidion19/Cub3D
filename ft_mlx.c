@@ -68,16 +68,33 @@ int         ft_error(t_map start)
         return (1);
 }
 
+void        my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+    char *dst;
+
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    *(unsigned int*)dst = color;
+}
+
 int         ft_mlx(t_map start)
 {
-    void *mlx;
-    void *win;
-    void *img;
+    t_mlx   window;
+    t_rcst  ray_info;
 
-    //printstart(start);
-    mlx = mlx_init();
-    win = mlx_new_window(mlx, start.ll, start.l, "cub3D");
-    img = mlx_new_image(mlx, start.ll, start.l);
-    mlx_loop(mlx);
+    //ray_info.pos_x = 0;
+    window.mlx = mlx_init();
+    ray_info.data = ft_data_fill(ray_info.data);
+    window.win = mlx_new_window(window.mlx, start.ll, start.l, "cub3D");
+    ray_info.data.img = mlx_new_image(window.mlx, start.ll, start.l);
+    //data = ft_data_fill(data);
+    ray_info.data.addr = mlx_get_data_addr(ray_info.data.img, &ray_info.data.bits_per_pixel, &ray_info.data.line_length, &ray_info.data.endian);
+    //mlx_pixel_put(window.mlx, window.win, 1, 1, 0x00502060);
+    ray_info.window = window;
+    ray_info.start = start;
+    ray_info = ft_rcst_fill(window, start, ray_info);
+    ft_hook(ray_info, window);
+    //ft_rcst_loop(ray_info->window, ray_info->start, *ray_info);
+    mlx_loop(window.mlx);
+    //ft_rcst_fill(window, start);
     return (1);
 }
