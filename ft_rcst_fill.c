@@ -152,7 +152,7 @@ t_rcst      ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
     c = 0;
     while (c++ < start.ll)
     {
-        ray_info.cam_x = 2 * c / (double)(start.ll - 1);
+        ray_info.cam_x = 2 * c / (double)(start.ll) - 1;
         ray_info.ray_dir_x = ray_info.dir_x + ray_info.plan_x * ray_info.cam_x;
         ray_info.ray_dir_y = ray_info.dir_y + ray_info.plan_y * ray_info.cam_x;
         ray_info = ft_rcst_fill_3(ray_info);
@@ -185,11 +185,11 @@ t_rcst        ft_rcst_fill(t_mlx window, t_map start, t_rcst ray_info)
     ray_info.plan_y = 0;
     ray_info.dir_x = 0;
     ray_info.dir_y = 0;
-    ray_info.plan_y = M_PI/4;
+    ray_info.plan_y = 0.66;
     if (start.start == 3) // N
     {
         ray_info.dir_x = -ray_info.plan_y;
-        ray_info.plan_y = ray_info.plan_y;
+        ray_info.plan_x = ray_info.plan_y;
     }
     else if (start.start == 5) // S
         ray_info.dir_x = -1;
@@ -203,7 +203,7 @@ t_rcst        ft_rcst_fill(t_mlx window, t_map start, t_rcst ray_info)
     else if (start.start == 6) // W
         ray_info.dir_y = -1;
     else
-        ray_info.dir_y = -0.73;
+        ray_info.dir_y = 0.05;
     ray_info = ft_rcst_fill_2(window, start, ray_info);
     return (ray_info);
 }
