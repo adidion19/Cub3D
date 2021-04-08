@@ -76,6 +76,17 @@ void        my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
+unsigned int        my_mlx_pixel_get(t_data *data, int x, int y)
+{
+    char *dst;
+    unsigned int    ret;
+
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    ret = *(unsigned int*)dst;
+    return (ret);
+}
+
+
 int         ft_mlx(t_map start)
 {
     t_mlx   window;

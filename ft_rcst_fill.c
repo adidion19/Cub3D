@@ -145,6 +145,86 @@ t_rcst        ft_pixel_print(t_rcst ray_info, int x)
     //mlx_put_image_to_window(window.mlx, window.win, ray_info.data->img, 0, 0);
 }
 
+t_rcst      ft_texture_fill(t_rcst ray_info)
+{
+    int x;
+    int y;
+    int a;
+    int b;
+
+    a = 64;
+    b = 64;
+    x = -1;
+    ray_info.xpm.img = mlx_xpm_file_to_image(ray_info.window.mlx, ray_info.start.n_texture, &a, &b);
+    //ray_info.txt = mlx_xpm_file_to_image(ray_info.window.mlx, ray_info.start.e_texture, &a, &b);
+    while (++x < 64)
+    {
+        y = -1;
+        while (++y < 64)
+        {
+            ;//ray_info.xor_color = (x * 256 / 64) ^ (y * 256 / 64);
+            //ray_info.y_color = y * 256 / 64;
+            //ray_info.xy_color = y * 128 / 64 + x * 128 / 64;
+            ////ray_info.txt[2][64 * y + x] = 256 * ray_info.xy_color + 65536 * ray_info.xy_color;
+            ////ray_info.txt[3][64 * y + x] = ray_info.xor_color + 256 * ray_info.xor_color + 65536 * ray_info.xor_color;
+            ////ray_info.txt[4][64 * y + x] = 256 * ray_info.xor_color;
+            ////ray_info.txt[5][64 * y + x] = 65536 * 192 * (x % 16 && y % 16);
+            ////ray_info.txt[6][64 * y + x] = 65536 * ray_info.y_color;
+            ////ray_info.txt[7][64 * y + x] = 128 + 256 * 128 + 65536 * 128;
+        }
+    }
+    return (ray_info);
+}
+
+t_rcst      ft_rcst_calculate_3(t_map start, t_rcst ray_info)
+{
+    ray_info.tex_num = start.tab[ray_info.map_x][ray_info.map_y] - 1;
+    if (ray_info.side == 0)
+        ray_info.wall_x = ray_info.pos_y + ray_info.perp_wall_dist * ray_info.ray_dir_y;
+    else
+        ray_info.wall_x = ray_info.pos_x + ray_info.perp_wall_dist * ray_info.ray_dir_x;
+    ray_info.wall_x -= floor(ray_info.wall_x);
+    ray_info.tex_x = (int)(ray_info.wall_x * (double)64);
+    if (ray_info.side == 0 && ray_info.ray_dir_x > 0)
+        ray_info.tex_x = 64 - ray_info.tex_x - 1;
+    if (ray_info.side == 1 && ray_info.ray_dir_y < 0)
+        ray_info.tex_x = 64 - ray_info.tex_x - 1;
+    return (ray_info);
+}
+
+t_data      ft_xpm_to_image(t_rcst ray_info)
+{
+    int a;
+    int b;
+
+    a = 64;
+    b = 64;
+    ray_info.xpm.img = mlx_xpm_file_to_image(ray_info.window.mlx, ray_info.start.n_texture, &a, &b);
+    ray_info.xpm.addr = mlx_get_data_addr(ray_info.xpm.img, &ray_info.xpm.bits_per_pixel, &ray_info.xpm.line_length, &ray_info.xpm.endian);
+    return (ray_info.xpm);
+}
+
+t_rcst      ft_rcst_calculate_4(t_rcst ray_info, int x)
+{
+    int y;
+
+    ft_draw_floor_and_cell(ray_info, x);
+    ray_info.step = 1.0 * 64 / ray_info.line_hight;
+    ray_info.tex_pos = (ray_info.draw_start - ray_info.start.l / 2 + ray_info.line_hight / 2) * ray_info.step;
+    y = ray_info.draw_start - 1;
+    while (++y < ray_info.draw_end)
+    {
+        ray_info.tex_y = (int)ray_info.tex_pos & (64 - 1);
+        ray_info.tex_pos += ray_info.step;
+        ray_info.color = my_mlx_pixel_get(&ray_info.xpm, ray_info.tex_x, ray_info.tex_y);
+        if (ray_info.side == 1)
+            ray_info.color = (ray_info.color >> 1) & 8355711;
+        //while (ray_info.draw_start++ < ray_info.draw_end)
+            my_mlx_pixel_put(&ray_info.data , x, y, ray_info.color);
+    }
+    return (ray_info);
+}
+
 t_rcst      ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
 {
     int c;
@@ -159,18 +239,24 @@ t_rcst      ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
         ray_info = ft_rcst_fill_4(ray_info);
         ray_info = ft_rcst_calculate(ray_info);
         ray_info = ft_rcst_calculate_2(start, ray_info);
-        ray_info = ft_pixel_print(ray_info, c);
+        ray_info = ft_rcst_calculate_3(start, ray_info);
+        ray_info = ft_rcst_calculate_4(ray_info, c);
+        //ray_info = ft_pixel_print(ray_info, c);
     }
-   // mlx_clear_window(window.mlx, window.win);
+    mlx_clear_window(window.mlx, window.win);
     mlx_put_image_to_window(window.mlx, ray_info.window.win, ray_info.data.img, 0, 0);
+    system("leaks cub3D");
     return (ray_info);
 }
 
-t_rcst      ft_rcst_fill_2(t_mlx window, t_map start, t_rcst ray_info)
+t_rcst		ft_rcst_fill_2(t_mlx window, t_map start, t_rcst ray_info)
 {
     ray_info.plan_x = 0;
     ray_info.cam_time = 0;
     ray_info.old_time = 0;
+    //ray_info = ft_texture_fill(ray_info);
+    ray_info.xpm = ft_data_fill(ray_info.xpm);
+    ray_info.xpm = ft_xpm_to_image(ray_info);
     ray_info = ft_rcst_loop(window, start, ray_info);
     return (ray_info);
 }

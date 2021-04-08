@@ -99,6 +99,19 @@ typedef struct	s_rcst
 	t_mlx		window;
 	t_map		start;
 	t_data		data;
+	t_data		xpm;
+	int			color;
+	int			**buffer;
+	void		*txt;
+	int			xor_color;
+	int			y_color;
+	int			xy_color;
+	int			tex_num;
+	double		wall_x;
+	int			tex_x;
+	double		step;
+	double		tex_pos;
+	int			tex_y;
 }				t_rcst;
 
 int				ft_parse_count(char *str);
@@ -153,5 +166,6 @@ t_rcst			ft_hook(t_rcst ray_info, t_mlx window);
 t_rcst      	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info);
 void        	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_data      	ft_data_fill(t_data img);
+unsigned int    my_mlx_pixel_get(t_data *data, int x, int y);
 
 #endif

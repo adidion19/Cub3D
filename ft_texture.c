@@ -24,8 +24,6 @@ char        *ft_n_texture(t_list *lst)
         if (line[i++] == 'N')
             if (line[i++] == 'O')
                 if (line[i++] == ' ')
-                    if (line[i++] == '.')
-                        if (line[i++] == '/')
                             break;
         lst = lst->next;
     }
@@ -44,8 +42,6 @@ char        *ft_s_texture(t_list *lst)
         if (line[i++] == 'S')
             if (line[i++] == 'O')
                 if (line[i++] == ' ')
-                    if (line[i++] == '.')
-                        if (line[i++] == '/')
                             break;
         lst = lst->next;
     }
@@ -64,8 +60,6 @@ char        *ft_e_texture(t_list *lst)
         if (line[i++] == 'E')
             if (line[i++] == 'A')
                 if (line[i++] == ' ')
-                    if (line[i++] == '.')
-                        if (line[i++] == '/')
                             break;
         lst = lst->next;
     }
@@ -84,8 +78,6 @@ char        *ft_w_texture(t_list *lst)
         if (line[i++] == 'W')
             if (line[i++] == 'E')
                 if (line[i++] == ' ')
-                    if (line[i++] == '.')
-                        if (line[i++] == '/')
                             break;
         lst = lst->next;
     }
@@ -103,8 +95,6 @@ char        *ft_sprite_texture(t_list *lst)
         line = lst->content;
         if (line[i++] == 'S')
                 if (line[i++] == ' ')
-                    if (line[i++] == '.')
-                        if (line[i++] == '/')
                             break;
         lst = lst->next;
     }
