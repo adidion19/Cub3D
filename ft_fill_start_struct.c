@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-t_map			ft_fill_start_struct(int **tab, int a)
+t_map	ft_fill_start_struct(int **tab, int a)
 {
 	int		i;
 	int		j;

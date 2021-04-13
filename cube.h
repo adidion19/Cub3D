@@ -99,7 +99,10 @@ typedef struct	s_rcst
 	t_mlx		window;
 	t_map		start;
 	t_data		data;
-	t_data		xpm;
+	t_data		xpm_n;
+	t_data		xpm_e;
+	t_data		xpm_s;
+	t_data		xpm_w;
 	int			color;
 	int			**buffer;
 	void		*txt;
@@ -112,6 +115,7 @@ typedef struct	s_rcst
 	double		step;
 	double		tex_pos;
 	int			tex_y;
+	double		fov;
 }				t_rcst;
 
 int				ft_parse_count(char *str);

@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-t_list		*ft_lst_fill_2(t_list *lst, char *str)
+t_list	*ft_lst_fill_2(t_list *lst, char *str)
 {
 	if (!lst)
 		lst = ft_lstnew(str);
@@ -21,7 +21,7 @@ t_list		*ft_lst_fill_2(t_list *lst, char *str)
 	return (lst);
 }
 
-int			ft_check_line(char *line)
+int	ft_check_line(char *line)
 {
 	int i;
 	int bool;
@@ -44,7 +44,7 @@ int			ft_check_line(char *line)
 	return (0);
 }
 
-t_list		*ft_lst_fill(int fd)
+t_list	*ft_lst_fill(int fd)
 {
 	char	*line;
 	t_list	*lst;
@@ -61,7 +61,7 @@ t_list		*ft_lst_fill(int fd)
 	return (lst);
 }
 
-int			ft_parse_count(char *str)
+int	ft_parse_count(char *str)
 {
 	int		ret;
 	int		fd;

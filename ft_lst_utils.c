@@ -12,9 +12,9 @@
 
 #include "cube.h"
 
-t_list		*ft_lstadd_back(t_list *alst, t_list *new)
+t_list	*ft_lstadd_back(t_list *alst, t_list *new)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	if (!new)
 		return (0);
@@ -29,7 +29,7 @@ t_list		*ft_lstadd_back(t_list *alst, t_list *new)
 	return (alst);
 }
 
-void		ft_lstadd_front(t_list **alst, t_list *new)
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
 	if (new == 0)
 		return ;
@@ -37,7 +37,7 @@ void		ft_lstadd_front(t_list **alst, t_list *new)
 	*alst = new;
 }
 
-void		ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*temp;
 
@@ -56,7 +56,7 @@ void		ft_lstclear(t_list **lst, void (*del)(void*))
 	*lst = 0;
 }
 
-void		ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	if (!lst || !del)
 		return ;
@@ -64,7 +64,7 @@ void		ft_lstdelone(t_list *lst, void (*del)(void*))
 	lst = 0;
 }
 
-void		ft_lstiter(t_list *lst, int (*f)(const char*, ...))
+void	ft_lstiter(t_list *lst, int (*f)(const char*, ...))
 {
 	if (lst && (*f))
 	{
