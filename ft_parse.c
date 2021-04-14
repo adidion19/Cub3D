@@ -12,30 +12,21 @@
 
 #include "cube.h"
 
-t_list	*ft_lst_fill_2(t_list *lst, char *str)
-{
-	if (!lst)
-		lst = ft_lstnew(str);
-	else
-		lst = ft_lstadd_back((lst), ft_lstnew(str));
-	return (lst);
-}
-
 int	ft_check_line(char *line)
 {
-	int i;
-	int bool;
+	int	i;
+	int	bool;
 
 	i = 0;
 	bool = 0;
 	if (!line)
 		return (0);
 	while (line[i] == '0' || line[i] == '1' || line[i] == ' '
-			|| line[i] == '2' || line[i] == 'S' || line[i] == 'N'
-			|| line[i] == 'E' || line[i] == 'W')
+		|| line[i] == '2' || line[i] == 'S' || line[i] == 'N'
+		|| line[i] == 'E' || line[i] == 'W')
 	{
-		if (line[i] == '0' || line[i] == '1' || line[i] == 'S' ||
-			line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
+		if (line[i] == '0' || line[i] == '1' || line[i] == 'S'
+			|| line[i] == 'N' || line[i] == 'E' || line[i] == 'W')
 			bool = 1;
 		if ((line[i + 1] == '\n' || line[i + 1] == 0) && i > 1 && bool == 1)
 			return (1);
@@ -70,15 +61,19 @@ int	ft_parse_count(char *str)
 
 	count = 0;
 	fd = open(str, O_RDONLY);
-	while (1 == (ret = get_next_line(fd, &line)))
+	ret = get_next_line(fd, &line);
+	while (1 == ret)
+	{
+		ret = get_next_line(fd, &line);
 		count++;
+	}
 	return (count);
 }
 
-void		ft_print_tab(int **tab)
+void	ft_print_tab(int **tab)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (tab[i])
@@ -95,7 +90,7 @@ void		ft_print_tab(int **tab)
 	printf("\n");
 }
 
-t_map		ft_parse_init(char *str)
+t_map	ft_parse_init(char *str)
 {
 	int		i;
 	int		fd;
@@ -105,10 +100,9 @@ t_map		ft_parse_init(char *str)
 
 	i = ft_parse_count(str);
 	if (!ft_test_ext(str))
-	{
 		start.ext = 1;
+	if (!ft_test_ext(str))
 		return (start);
-	}
 	fd = open(str, O_RDONLY);
 	lst = ft_lst_fill(fd);
 	tab = ft_int_tab_fill(lst, i);

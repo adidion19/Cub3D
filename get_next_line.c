@@ -12,9 +12,9 @@
 
 #include "cube.h"
 
-int		ft_newline(char *s)
+int	ft_newline(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)
@@ -45,7 +45,8 @@ char	*ft_static(char *s)
 		free(s);
 		return (0);
 	}
-	if (!(str = malloc(sizeof(char) * (ft_strlen(s) - i))))
+	str = malloc(sizeof(char) * (ft_strlen(s) - i));
+	if (!str)
 		get_next_line(-1, &s);
 	i++;
 	while (s[i])
@@ -65,7 +66,8 @@ char	*ft_line(char *s)
 		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
-	if (!(str = malloc(sizeof(char) * (i + 1))))
+	str = malloc(sizeof(char) * (i + 1));
+	if (!str)
 		get_next_line(-1, &s);
 	i = 0;
 	while (s[i] && s[i] != '\n')
@@ -77,7 +79,7 @@ char	*ft_line(char *s)
 	return (str);
 }
 
-int		ft_protect(char *s, char *buff)
+int	ft_protect(char *s, char *buff)
 {
 	if (s)
 		free(s);
@@ -86,33 +88,25 @@ int		ft_protect(char *s, char *buff)
 	return (-1);
 }
 
-char	*ft_protect_2(char *s, char *buff)
+int	get_next_line(int fd, char **line)
 {
-	if (s)
-		free(s);
-	if (buff)
-		free(buff);
-	return (0);
-}
-
-int		get_next_line(int fd, char **line)
-{
-	static char *s;
+	static char	*s;
 	char		*buff;
 	int			i;
 
 	i = 1;
-	buff = 0;
-	if (fd < 0 || fd > OPEN_MAX || 1 > BUFFER_SIZE || line == 0 ||
-	BUFFER_SIZE >= INT_MAX
-	|| (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1)))))
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (fd < 0 || fd > OPEN_MAX || 1 > BUFFER_SIZE || line == 0
+		|| BUFFER_SIZE >= INT_MAX || !buff)
 		return (ft_protect(buff, s));
 	while (!ft_newline(s) && i != 0)
 	{
-		if ((i = read(fd, buff, BUFFER_SIZE)) == -1)
+		i = read(fd, buff, BUFFER_SIZE);
+		if (i == -1)
 			return (ft_protect(buff, s));
 		buff[i] = '\0';
-		if (!(s = ft_strjoin(s, buff)))
+		s = ft_strjoin(s, buff);
+		if (!s)
 			return (ft_protect(buff, s));
 	}
 	free(buff);

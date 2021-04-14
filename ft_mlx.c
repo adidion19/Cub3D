@@ -12,24 +12,9 @@
 
 #include "cube.h"
 
-int	ft_error(t_map start)
+int	ft_error_2(t_map start)
 {
-	if (start.ext == 1)
-	{
-		printf("Error\nInvalid file extension\n");
-		return (0);
-	}
-	else if (start.tab == 0)
-	{
-		printf("Error\nMap doesn't exist\n");
-		return (0);
-	}
-	else if (!start.x || !start.y || !start.start)
-	{
-		printf("Error\nPlayer's start doesn't exist\n");
-		return (0);
-	}
-	else if (start.l <= 0 || start.ll <= 0)
+	if (start.l <= 0 || start.ll <= 0)
 	{
 		printf("Error\nSize of window undifined\n");
 		return (0);
@@ -48,6 +33,27 @@ int	ft_error(t_map start)
 	}
 	else
 		return (1);
+}
+
+int	ft_error(t_map start)
+{
+	if (start.ext == 1)
+	{
+		printf("Error\nInvalid file extension\n");
+		return (0);
+	}
+	else if (start.tab == 0)
+	{
+		printf("Error\nMap doesn't exist\n");
+		return (0);
+	}
+	else if (!start.x || !start.y || !start.start)
+	{
+		printf("Error\nPlayer's start doesn't exist\n");
+		return (0);
+	}
+	else
+		return (ft_error_2(start));
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

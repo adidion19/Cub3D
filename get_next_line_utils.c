@@ -12,9 +12,9 @@
 
 #include "cube.h"
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -32,7 +32,8 @@ char	*ft_strdup(const char *src)
 	i = 0;
 	while (src[i])
 		i++;
-	if (!(dest = malloc(sizeof(char) * (i + 1))))
+	dest = malloc(sizeof(char) * (i + 1));
+	if (!dest)
 		return (0);
 	i = -1;
 	while (src[++i])
@@ -52,11 +53,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (0);
 	if (!s1)
-		return (ft_strdup((char*)s2));
+		return (ft_strdup((char *)s2));
 	if (!s2)
-		return (ft_strdup((char*)s1));
-	len = ft_strlen((char*)s1) + ft_strlen((char*)s2);
-	if (!(str = malloc(sizeof(char) * (len + 1))))
+		return (ft_strdup((char *)s1));
+	len = ft_strlen((char *)s1) + ft_strlen((char *)s2);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (0);
 	while (s1[++i])
 		str[i] = s1[i];
@@ -69,7 +71,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-int		ft_return(int i, char *s)
+int	ft_return(int i, char *s)
 {
 	if (i == 0)
 	{
@@ -83,22 +85,23 @@ int		ft_return(int i, char *s)
 
 char	*get_next_line_2(int fd, char **line)
 {
-	static char *s;
+	static char	*s;
 	char		*buff;
 	int			i;
 
 	i = 1;
-	buff = 0;
-	if (fd < 0 || fd > OPEN_MAX || 1 > BUFFER_SIZE || line == 0 ||
-	BUFFER_SIZE >= INT_MAX
-	|| (!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1)))))
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (fd < 0 || fd > OPEN_MAX || 1 > BUFFER_SIZE || line == 0
+		|| BUFFER_SIZE >= INT_MAX || !buff)
 		return (ft_protect_2(buff, s));
 	while (!ft_newline(s) && i != 0)
 	{
-		if ((i = read(fd, buff, BUFFER_SIZE)) == -1)
+		i = read(fd, buff, BUFFER_SIZE);
+		if (i == -1)
 			return (ft_protect_2(buff, s));
 		buff[i] = '\0';
-		if (!(s = ft_strjoin(s, buff)))
+		s = ft_strjoin(s, buff);
+		if (!s)
 			return (ft_protect_2(buff, s));
 	}
 	free(buff);

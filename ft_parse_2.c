@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_parse_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adidion <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/23 10:36:10 by adidion           #+#    #+#             */
-/*   Updated: 2021/03/08 12:16:35 by adidion          ###   ########.fr       */
+/*   Created: 2021/04/14 12:22:57 by adidion           #+#    #+#             */
+/*   Updated: 2021/04/14 12:23:00 by adidion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lst_fill_2(t_list *lst, char *str)
 {
-	t_map	start;
-	int		i;
-
-	i = 0;
-	start.start = 0;
-	if (ac == 2 || ac == 3)
-		start = ft_parse_init(av[1]);
-	else if (ac == 1 || ac > 3)
-		printf("Error\nNombre d'arguments invalide\n");
-	if (ft_error(start) == 0)
-		return (0);
-	ft_mlx(start);
-	system("leaks cub3D");
-	return (0);
+	if (!lst)
+		lst = ft_lstnew(str);
+	else
+		lst = ft_lstadd_back((lst), ft_lstnew(str));
+	return (lst);
 }

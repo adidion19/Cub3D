@@ -28,6 +28,12 @@ SRCS =	ft_parse.c\
 		ft_colours.c\
 		ft_rcst_fill.c\
 		ft_hook.c\
+		get_next_line_utils_2.c\
+		ft_hook_2.c\
+		ft_parse_2.c\
+		ft_xpm_to_image.c\
+		ft_rcst_calculate.c\
+		ft_rcst_calculate_2.c
 
 CFLAGS = -Wall -Wextra -Werror
 

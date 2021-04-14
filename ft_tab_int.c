@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-int			ft_value_int(char c)
+int	ft_value_int(char c)
 {
 	if (c == ' ')
 		return (7);
@@ -34,9 +34,9 @@ int			ft_value_int(char c)
 		return (8);
 }
 
-int			*ft_free_tab(int **a)
+int	*ft_free_tab(int **a)
 {
-	int b;
+	int	b;
 
 	b = 0;
 	while (a[b])
@@ -48,17 +48,18 @@ int			*ft_free_tab(int **a)
 	return (0);
 }
 
-int			*ft_fill_one_entry(char *str, int **a)
+int	*ft_fill_one_entry(char *str, int **a)
 {
-	int *tab;
-	int i;
-	int j;
+	int	*tab;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (!str)
 		return (0);
 	j = ft_strlen(str);
-	if (!(tab = malloc(sizeof(int) * j + 1)))
+	tab = malloc(sizeof(int) * j + 1);
+	if (!tab)
 		return (ft_free_tab(a));
 	while (str[i])
 	{
@@ -69,12 +70,13 @@ int			*ft_fill_one_entry(char *str, int **a)
 	return (tab);
 }
 
-int			**ft_int_tab_fill(t_list *lst, int i)
+int	**ft_int_tab_fill(t_list *lst, int i)
 {
-	int		**tab;
-	int		a;
+	int	**tab;
+	int	a;
 
-	if (!(tab = malloc(sizeof(int*) * i + 1)))
+	tab = malloc(sizeof(int *) * i + 1);
+	if (!tab)
 		return (0);
 	a = 0;
 	while (lst)

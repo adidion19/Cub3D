@@ -12,91 +12,91 @@
 
 #include "cube.h"
 
-char        *ft_n_texture(t_list *lst)
+char	*ft_n_texture(t_list *lst)
 {
-    int i;
-    char *line;
+	int		i;
+	char	*line;
 
-    while (lst)
-    {
-        i = 0;
-        line = lst->content;
-        if (line[i++] == 'N')
-            if (line[i++] == 'O')
-                if (line[i++] == ' ')
-                            break;
-        lst = lst->next;
-    }
-    return (((char*)line) + i);
+	while (lst)
+	{
+		i = 0;
+		line = lst->content;
+		if (line[i++] == 'N')
+			if (line[i++] == 'O')
+				if (line[i++] == ' ')
+					break ;
+		lst = lst->next;
+	}
+	return (((char *)line) + i);
 }
 
-char        *ft_s_texture(t_list *lst)
+char	*ft_s_texture(t_list *lst)
 {
-    int i;
-    char *line;
+	int		i;
+	char	*line;
 
-    while (lst)
-    {
-        i = 0;
-        line = lst->content;
-        if (line[i++] == 'S')
-            if (line[i++] == 'O')
-                if (line[i++] == ' ')
-                            break;
-        lst = lst->next;
-    }
-    return (((char*)line) + i);
+	while (lst)
+	{
+		i = 0;
+		line = lst->content;
+		if (line[i++] == 'S')
+			if (line[i++] == 'O')
+				if (line[i++] == ' ')
+					break ;
+		lst = lst->next;
+	}
+	return (((char *)line) + i);
 }
 
-char        *ft_e_texture(t_list *lst)
+char	*ft_e_texture(t_list *lst)
 {
-    int i;
-    char *line;
+	int		i;
+	char	*line;
 
-    while (lst)
-    {
-        i = 0;
-        line = lst->content;
-        if (line[i++] == 'E')
-            if (line[i++] == 'A')
-                if (line[i++] == ' ')
-                            break;
-        lst = lst->next;
-    }
-    return (((char*)line) + i);
+	while (lst)
+	{
+		i = 0;
+		line = lst->content;
+		if (line[i++] == 'E')
+			if (line[i++] == 'A')
+				if (line[i++] == ' ')
+					break ;
+		lst = lst->next;
+	}
+	return (((char *)line) + i);
 }
 
-char        *ft_w_texture(t_list *lst)
+char	*ft_w_texture(t_list *lst)
 {
-    int i;
-    char *line;
+	int		i;
+	char	*line;
 
-    while (lst)
-    {
-        i = 0;
-        line = lst->content;
-        if (line[i++] == 'W')
-            if (line[i++] == 'E')
-                if (line[i++] == ' ')
-                            break;
-        lst = lst->next;
-    }
-    return (((char*)line) + i);
+	while (lst)
+	{
+		i = 0;
+		line = lst->content;
+		if (line[i++] == 'W')
+			if (line[i++] == 'E')
+				if (line[i++] == ' ')
+					break ;
+		lst = lst->next;
+	}
+	return (((char *)line) + i);
 }
 
-char        *ft_sprite_texture(t_list *lst)
+char	*ft_sprite_texture(t_list *lst)
 {
-    int i;
-    char *line;
+	int		i;
+	char	*line;
 
-    while (lst)
-    {
-        i = 0;
-        line = lst->content;
-        if (line[i++] == 'S')
-                if (line[i++] == ' ')
-                            break;
-        lst = lst->next;
-    }
-    return (((char*)line) + i);
+	while (lst)
+	{
+		i = 0;
+		line = lst->content;
+		if (line[i++] == 'S')
+			if (line[i++] == ' ')
+				break ;
+		lst = lst->next;
+	}
+	return (((char *)line) + i);
 }

@@ -12,9 +12,9 @@
 
 #include "cube.h"
 
-int			ft_intlen(int *a)
+int	ft_intlen(int *a)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (a[i])
@@ -22,18 +22,17 @@ int			ft_intlen(int *a)
 	return (i);
 }
 
-int			ft_test_map(int **tab)
+int	ft_test_map(int **tab)
 {
-	int i;
-	int j;
-	int y_max;
-	int x_max;
+	int	i;
+	int	j;
+	int	y_max;
+	int	x_max;
 
 	i = -1;
-	y_max = 0;
-	while (tab[y_max])
-		y_max++;
-	y_max--;
+	y_max = -1;
+	while (tab[++y_max])
+		;
 	while (tab[++i])
 	{
 		x_max = ft_intlen(tab[i]);
@@ -41,19 +40,20 @@ int			ft_test_map(int **tab)
 		while (tab[i][++j])
 		{
 			if (tab[i][j] == 9)
-				if (i == 0 || j == 0 || j == x_max || i == y_max ||
-tab[i][j + 1] == 7 || tab[i][j - 1] == 7 || tab[i + 1][j] == 7 ||
-tab[i - 1][j] == 7 || tab[i + 1][j - 1] == 7 || tab[i + 1][j + 1] == 7 ||
-						tab[i - 1][j - 1] == 7 || tab[i - 1][j + 1] == 7)
+				if (i == 0 || j == 0 || j == x_max || i == y_max
+					|| tab[i][j + 1] == 7 || tab[i][j - 1] == 7
+					|| tab[i + 1][j] == 7 || tab[i - 1][j] == 7
+					|| tab[i + 1][j - 1] == 7 || tab[i + 1][j + 1] == 7
+					|| tab[i - 1][j - 1] == 7 || tab[i - 1][j + 1] == 7)
 					return (0);
 		}
 	}
 	return (1);
 }
 
-int			ft_test_ext(char *str)
+int	ft_test_ext(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!str)
