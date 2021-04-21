@@ -106,7 +106,6 @@ t_map	ft_parse_init(char *str)
 	fd = open(str, O_RDONLY);
 	lst = ft_lst_fill(fd);
 	tab = ft_int_tab_fill(lst, i);
-	ft_print_tab(tab);
 	start = ft_fill_start_struct(tab, i);
 	if (!(ft_test_map(start.tab)))
 	{

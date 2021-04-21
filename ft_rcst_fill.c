@@ -29,7 +29,7 @@ t_rcst	ft_rcst_calculate(t_rcst ray_info, int y)
 			ray_info.side = 1;
 		}
 		y = ray_info.start.tab[ray_info.map_x][ray_info.map_y];
-		if (y != 9 && y != 3 && y != 4 && y != 5 && y != 6)
+		if (y != 9 && y != 3 && y != 4 && y != 5 && y != 6 && y != 2)
 			ray_info.hit = 1;
 	}
 	if (ray_info.side == 0)
@@ -44,9 +44,11 @@ t_rcst	ft_rcst_calculate(t_rcst ray_info, int y)
 t_rcst	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
 {
 	int	c;
+	double *z_buffer;
 
-	c = 0;
-	while (c++ < start.ll)
+	c = -1;
+	z_buffer = malloc(sizeof(double) * ray_info.start.ll);
+	while (++c < start.ll)
 	{
 		ray_info.cam_x = 2 * c / (double)(start.ll) - 1;
 		ray_info.ray_dir_x = ray_info.dir_x + ray_info.plan_x * ray_info.cam_x;
@@ -57,11 +59,35 @@ t_rcst	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
 		ray_info = ft_rcst_calculate_2(start, ray_info);
 		ray_info = ft_rcst_calculate_3(start, ray_info);
 		ray_info = ft_rcst_calculate_4(ray_info, c, ray_info.draw_start - 1);
+		z_buffer[c] = ray_info.perp_wall_dist;
 	}
+	ray_info = ft_sprite_casting(ray_info, z_buffer);
 	mlx_clear_window(window.mlx, window.win);
 	mlx_put_image_to_window(window.mlx, ray_info.window.win,
 		ray_info.data.img, 0, 0);
+	free(z_buffer);
 	return (ray_info);
+}
+
+t_obj	*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info)
+{
+	int i;
+	int j;
+	int k;
+
+	i = -1;
+	k = 0;
+	while (ray_info.start.tab[++i])
+	{
+		j = -1;
+		while (ray_info.start.tab[i][++j])
+			if (ray_info.start.tab[i][j] == 2)
+			{
+				sprite[k].x = i + 0.5;
+				sprite[k++].y = j + 0.5;
+			}
+	}
+	return (sprite);
 }
 
 t_rcst	ft_rcst_fill_2(t_mlx window, t_map start, t_rcst ray_info)
@@ -72,6 +98,7 @@ t_rcst	ft_rcst_fill_2(t_mlx window, t_map start, t_rcst ray_info)
 	ray_info.xpm_s = ft_xpm_to_image_s(ray_info);
 	ray_info.xpm_e = ft_xpm_to_image_e(ray_info);
 	ray_info.xpm_w = ft_xpm_to_image_w(ray_info);
+	ray_info.xpm_sprite = ft_xpm_to_image_sprite(ray_info);
 	ray_info = ft_rcst_loop(window, start, ray_info);
 	return (ray_info);
 }
@@ -104,8 +131,30 @@ t_rcst	ft_rcst_fill_1(t_mlx window, t_map start, t_rcst ray_info)
 	return (ray_info);
 }
 
+int	ft_num_sprite(int **tab)
+{
+	int i;
+	int j;
+	int count;
+
+	i = -1;
+	count = 0;
+	if (!tab)
+		return (EXIT_FAILURE);
+	while (tab[++i])
+	{
+		j = -1;
+		while (tab[i][++j])
+			if (tab[i][j] == 2)
+				count++;
+	}
+	return (count);
+}
+
 t_rcst	ft_rcst_fill(t_mlx window, t_map start, t_rcst ray_info)
 {
+	ft_print_tab(start.tab);
+	ray_info.sprite_num = ft_num_sprite(ray_info.start.tab);
 	ray_info.pos_x = start.x + 0.5;
 	ray_info.pos_y = start.y + 0.5;
 	ray_info.plan_x = 0;

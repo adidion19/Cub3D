@@ -69,6 +69,13 @@ typedef struct s_data
 	int			endian;
 }				t_data;
 
+typedef struct s_obj
+{
+	double	x;
+	double	y;
+	int		text;
+}				t_obj;
+
 typedef struct s_rcst
 {
 	double		pos_x;
@@ -103,6 +110,7 @@ typedef struct s_rcst
 	t_data		xpm_e;
 	t_data		xpm_s;
 	t_data		xpm_w;
+	t_data		xpm_sprite;
 	int			color;
 	int			**buffer;
 	void		*txt;
@@ -116,6 +124,27 @@ typedef struct s_rcst
 	double		tex_pos;
 	int			tex_y;
 	double		fov;
+	t_obj		*sprite;
+	int			*sprite_order;
+	double		sprite_distance;
+	double		z_buffer;
+	int			sprite_num;
+	double		*distance;
+	double		sprite_x;
+	double		sprite_y;
+	double		inv_det;
+	double		transform_x;
+	double		transform_y;
+	int			sprite_screen_x;
+	int			v_move_screen;
+	int			sprite_height;
+	int			draw_start_y;
+	int			draw_end_y;
+	int			sprite_width;
+	int			draw_start_x;
+	int			draw_end_x;
+	int			tex_x_2;
+	int			tex_y_2;
 }				t_rcst;
 
 int				ft_parse_count(char *str);
@@ -187,5 +216,8 @@ void			ft_draw_floor_and_cell(t_rcst ray_info, int x);
 t_data			ft_data_fill(t_data img);
 t_rcst			ft_rcst_calculate_3(t_map start, t_rcst ray_info);
 t_rcst			ft_rcst_calculate_4(t_rcst ray_info, int x, int y);
+t_rcst			ft_sprite_casting(t_rcst ray_info, double *z_buffer);
+t_data			ft_xpm_to_image_sprite(t_rcst ray_info);
+t_obj			*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info);
 
 #endif

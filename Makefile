@@ -33,7 +33,8 @@ SRCS =	ft_parse.c\
 		ft_parse_2.c\
 		ft_xpm_to_image.c\
 		ft_rcst_calculate.c\
-		ft_rcst_calculate_2.c
+		ft_rcst_calculate_2.c\
+		ft_sprite_casting.c\
 
 CFLAGS = -Wall -Wextra -Werror
 
