@@ -62,6 +62,7 @@ t_map	ft_text(char *file, t_map start)
 	start.sprite_texture = ft_sprite_texture(lst);
 	start = ft_colours_floor(start, lst);
 	start = ft_colours_cell(start, lst);
+	//ft_lstclear(&lst);
 	return (start);
 }
 
@@ -74,8 +75,6 @@ t_map	ft_window_size(char *file, t_map start, int fd)
 	i = 0;
 	lst = ft_lst_fill_3(fd);
 	str = ft_r_line(lst);
-	if (!str[0])
-		printf("Error\nResolution de l'ecran indefinie\n");
 	while (str[i] && (str[i] == ' ' || str[i] == 'R'))
 		i++;
 	if (str[i] >= '1' && str[i] <= '9')
@@ -87,5 +86,6 @@ t_map	ft_window_size(char *file, t_map start, int fd)
 	if (str[i] >= '1' && str[i] <= '9')
 		start.l = ft_atoi(((char *)str) + i);
 	start = ft_text(file, start);
+	ft_lstclear(&lst);
 	return (start);
 }

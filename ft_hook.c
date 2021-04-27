@@ -88,8 +88,16 @@ int	ft_key_press(int keycode, t_rcst *ray_info)
 	return (0);
 }
 
+int	ft_red_press(int keycode, int i)
+{
+	keycode = 0;
+	i = 1;
+	exit(0);
+}
+
 t_rcst	ft_hook(t_rcst ray_info, t_mlx window)
 {
 	mlx_hook(window.win, 02, 1L << 0, ft_key_press, &ray_info);
+	mlx_hook(window.win, 17, 1L << 5, ft_red_press, 0);
 	return (ray_info);
 }

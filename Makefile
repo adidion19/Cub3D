@@ -21,7 +21,6 @@ SRCS =	ft_parse.c\
 		ft_fill_start_struct.c\
 		ft_test_map.c\
 		main.c\
-		ft_mlx.c\
 		ft_window_size.c\
 		ft_atoi.c\
 		ft_texture.c\
@@ -35,6 +34,9 @@ SRCS =	ft_parse.c\
 		ft_rcst_calculate.c\
 		ft_rcst_calculate_2.c\
 		ft_sprite_casting.c\
+		ft_mlx.c\
+
+LIB = libmlx.a\
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -45,7 +47,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME) 
 
 $(NAME) : $(OBJS) 
-	gcc -lmlx -framework OpenGL -framework Appkit -o $(NAME) $(OBJS)
+	gcc -lmlx -framework OpenGL -framework Appkit -o $(NAME) $(OBJS) $(LIB)
 
 clean: 
 	rm -f $(OBJS)

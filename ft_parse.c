@@ -104,6 +104,11 @@ t_map	ft_parse_init(char *str)
 	if (!ft_test_ext(str))
 		return (start);
 	fd = open(str, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error\nFile not found\n");
+		exit(-1);
+	}
 	lst = ft_lst_fill(fd);
 	tab = ft_int_tab_fill(lst, i);
 	start = ft_fill_start_struct(tab, i);

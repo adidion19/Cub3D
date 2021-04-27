@@ -37,18 +37,23 @@ void	ft_lstadd_front(t_list **alst, t_list *new)
 	*alst = new;
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+//void ft_del(void *a)
+//{
+//	free(a);
+//}
+
+void	ft_lstclear(t_list **lst)
 {
 	t_list	*temp;
 
 	if (!lst)
 		return ;
 	temp = *lst;
-	if (!*lst || !del)
+	if (!*lst)
 		return ;
 	while (*lst != 0)
 	{
-		(*del)((*lst)->content);
+		free((*lst)->content);
 		temp = *lst;
 		*lst = temp->next;
 		free(temp);

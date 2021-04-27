@@ -24,17 +24,36 @@ t_rcst	ft_rcst_calculate_2(t_map start, t_rcst ray_info)
 	return (ray_info);
 }
 
+int		ft_char_to_int(char *str)
+{
+	int *i;
+
+	i = (int *)str;
+	return (*i);
+}
+
 void	ft_draw_floor_and_cell(t_rcst ray_info, int x)
 {
 	int	i;
 	int	y;
+	char str[4];
+	int j;
 
 	y = -1;
+	str[3] = 0;
+	str[2] = ray_info.start.cell_r;
+	str[1] = ray_info.start.cell_g;
+	str[0] = ray_info.start.cell_b;
+	j = ft_char_to_int(str);
 	i = ray_info.start.l / 2;
 	while (++y < i)
-		my_mlx_pixel_put(&ray_info.data, x, y, 0x00222222);
+		my_mlx_pixel_put(&ray_info.data, x, y, j);
+	str[2] = ray_info.start.floor_r;
+	str[1] = ray_info.start.floor_g;
+	str[0] = ray_info.start.floor_b;
+	j = ft_char_to_int(str);
 	while (++y < ray_info.start.l - 1)
-		my_mlx_pixel_put(&ray_info.data, x, y, 0x00333333);
+		my_mlx_pixel_put(&ray_info.data, x, y, j);
 }
 
 t_data	ft_data_fill(t_data img)

@@ -17,7 +17,9 @@ t_map	ft_fill_start_struct(int **tab, int a)
 	int		i;
 	int		j;
 	t_map	start;
+	int		bool;
 
+	bool = 0;
 	start.tab = tab;
 	i = 0;
 	j = 0;
@@ -28,9 +30,15 @@ t_map	ft_fill_start_struct(int **tab, int a)
 		{
 			if ((tab[i][j] >= 3 && tab[i][j] <= 6) || tab[i][j] == 5)
 			{
+				if (bool == 1)
+				{
+					printf("Error\nTwo player's starts\n");
+					exit(0);
+				}
 				start.start = tab[i][j];
 				start.x = i;
 				start.y = j;
+				bool = 1;
 			}
 			j++;
 		}

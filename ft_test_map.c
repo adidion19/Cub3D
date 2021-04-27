@@ -44,7 +44,11 @@ int	ft_test_map(int **tab)
 					|| tab[i][j + 1] == 7 || tab[i][j - 1] == 7
 					|| tab[i + 1][j] == 7 || tab[i - 1][j] == 7
 					|| tab[i + 1][j - 1] == 7 || tab[i + 1][j + 1] == 7
-					|| tab[i - 1][j - 1] == 7 || tab[i - 1][j + 1] == 7)
+					|| tab[i - 1][j - 1] == 7 || tab[i - 1][j + 1] == 7
+					|| !tab[i][j + 1] || !tab[i][j - 1]
+					|| !tab[i + 1][j] || !tab[i - 1][j]
+					|| !tab[i + 1][j - 1] || !tab[i + 1][j + 1]
+					|| !tab[i - 1][j - 1] || !tab[i - 1][j + 1])
 					return (0);
 		}
 	}

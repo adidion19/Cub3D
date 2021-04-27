@@ -76,15 +76,16 @@ t_obj	*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info)
 	int k;
 
 	i = -1;
-	k = 0;
+	k = -1;
 	while (ray_info.start.tab[++i])
 	{
 		j = -1;
 		while (ray_info.start.tab[i][++j])
 			if (ray_info.start.tab[i][j] == 2)
 			{
+				k++;
 				sprite[k].x = i + 0.5;
-				sprite[k++].y = j + 0.5;
+				sprite[k].y = j + 0.5;
 			}
 	}
 	return (sprite);

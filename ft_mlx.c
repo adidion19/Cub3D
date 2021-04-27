@@ -17,19 +17,19 @@ int	ft_error_2(t_map start)
 	if (start.l <= 0 || start.ll <= 0)
 	{
 		printf("Error\nSize of window undifined\n");
-		return (0);
+		exit(0);
 	}
 	else if (!start.n_texture || !start.e_texture || !start.w_texture
 		|| !start.s_texture || !start.sprite_texture)
 	{
 		printf("Error\nTexture undifined\n");
-		return (0);
+		exit(0);
 	}
 	else if (!start.floor_r || !start.floor_g || !start.floor_b
 		|| !start.cell_b || !start.cell_g || !start.cell_r)
 	{
 		printf("Error\nColour of floor or cell undifined\n");
-		return (0);
+		exit(0);
 	}
 	else
 		return (1);
@@ -40,17 +40,17 @@ int	ft_error(t_map start)
 	if (start.ext == 1)
 	{
 		printf("Error\nInvalid file extension\n");
-		return (0);
+		exit(0);
 	}
 	else if (start.tab == 0)
 	{
 		printf("Error\nMap doesn't exist\n");
-		return (0);
+		exit(0);
 	}
 	else if (!start.x || !start.y || !start.start)
 	{
 		printf("Error\nPlayer's start doesn't exist\n");
-		return (0);
+		exit(0);
 	}
 	else
 		return (ft_error_2(start));
@@ -74,6 +74,21 @@ unsigned int	my_mlx_pixel_get(t_data *data, int x, int y)
 	return (ret);
 }
 
+t_map	ft_screen_size(t_mlx window, t_map start)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	mlx_get_screen_size(window.mlx, &x, &y);
+	if (x < start.ll)
+		start.ll = x;
+	if (y < start.l)
+		start.l = y;
+	return (start);
+}
+
 int	ft_mlx(t_map start)
 {
 	t_mlx	window;
@@ -81,6 +96,7 @@ int	ft_mlx(t_map start)
 
 	window.mlx = mlx_init();
 	ray_info.data = ft_data_fill(ray_info.data);
+	start = ft_screen_size(window, start);
 	window.win = mlx_new_window(window.mlx, start.ll, start.l, "cub3D");
 	ray_info.data.img = mlx_new_image(window.mlx, start.ll, start.l);
 	ray_info.data.addr = mlx_get_data_addr(ray_info.data.img,

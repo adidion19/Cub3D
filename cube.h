@@ -12,7 +12,7 @@
 
 #ifndef CUBE_H
 # define CUBE_H
-# define BUFFER_SIZE 246
+# define BUFFER_SIZE 2147483645
 # ifndef OPEN_MAX
 #  define OPEN_MAX 32
 # endif
@@ -24,7 +24,7 @@
 # include <string.h>
 # include <errno.h>
 # include <math.h>
-# include <mlx.h>
+# include "minilibx_mms_20200219/mlx.h"
 
 typedef struct s_list
 {
@@ -151,7 +151,7 @@ int				ft_parse_count(char *str);
 t_map			ft_parse_init(char *str);
 int				ft_strlen(char *str);
 char			*ft_strdup(const char *src);
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin(char *s1, char *s2);
 int				ft_return(int i, char *s);
 int				ft_newline(char *s);
 char			*ft_static(char *s);
@@ -166,7 +166,6 @@ t_list			*ft_lstadd_back(t_list *alst, t_list *new);
 t_list			*ft_lstnew(char *content);
 t_list			*ft_lst_fill_2(t_list *lst, char *str);
 void			ft_lstadd_front(t_list **alst, t_list *new);
-void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, int (*f)(const char*, ...));
 t_list			*ft_lstlast(t_list *lst);
@@ -219,5 +218,7 @@ t_rcst			ft_rcst_calculate_4(t_rcst ray_info, int x, int y);
 t_rcst			ft_sprite_casting(t_rcst ray_info, double *z_buffer);
 t_data			ft_xpm_to_image_sprite(t_rcst ray_info);
 t_obj			*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info);
+void			ft_lstclear(t_list **lst);
+void			ft_del(void *a);
 
 #endif
