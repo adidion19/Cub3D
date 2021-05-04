@@ -86,6 +86,6 @@ int	**ft_int_tab_fill(t_list *lst, int i)
 		a++;
 	}
 	tab[a] = 0;
-	//ft_lstclear(&lst);
+	ft_lstclear(&lst);
 	return (tab);
 }

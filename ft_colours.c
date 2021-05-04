@@ -47,6 +47,7 @@ t_map	ft_colours_floor(t_map start, t_list *lst)
 				start = ft_triple_atoi_floor(start, ((char *)line) + i);
 		lst = lst->next;
 	}
+	printf("%d, %d, %d\n", start.floor_r, start.floor_g, start.floor_b);
 	return (start);
 }
 
@@ -85,5 +86,6 @@ t_map	ft_colours_cell(t_map start, t_list *lst)
 				start = ft_triple_atoi_cell(start, ((char *)line) + i);
 		lst = lst->next;
 	}
+	printf("%d, %d, %d\n", start.cell_r, start.cell_g, start.cell_b);
 	return (start);
 }

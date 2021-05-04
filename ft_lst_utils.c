@@ -12,21 +12,20 @@
 
 #include "cube.h"
 
-t_list	*ft_lstadd_back(t_list *alst, t_list *new)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	t_list	*temp;
+	t_list	*tmp;
 
-	if (!new)
-		return (0);
-	if (!alst)
+	if (alst)
 	{
-		alst = new;
-		return (new);
+		if (*alst == NULL)
+			*alst = new;
+		else
+		{
+			tmp = ft_lstlast(*(alst));
+			tmp->next = new;
+		}
 	}
-	temp = ft_lstlast(alst);
-	temp->next = new;
-	new->next = 0;
-	return (alst);
 }
 
 void	ft_lstadd_front(t_list **alst, t_list *new)
@@ -37,35 +36,25 @@ void	ft_lstadd_front(t_list **alst, t_list *new)
 	*alst = new;
 }
 
-//void ft_del(void *a)
-//{
-//	free(a);
-//}
-
 void	ft_lstclear(t_list **lst)
 {
-	t_list	*temp;
+	t_list	*old_elem;
 
-	if (!lst)
-		return ;
-	temp = *lst;
-	if (!*lst)
-		return ;
-	while (*lst != 0)
+	while (*lst)
 	{
 		free((*lst)->content);
-		temp = *lst;
-		*lst = temp->next;
-		free(temp);
+		old_elem = *lst;
+		*lst = old_elem->next;
+		free(old_elem);
 	}
-	*lst = 0;
+	*lst = NULL;
 }
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst)
 {
-	if (!lst || !del)
+	if (!lst)
 		return ;
-	del(lst->content);
+	free(lst->content);
 	lst = 0;
 }
 

@@ -42,7 +42,10 @@ t_list	*ft_lst_fill_3(int fd)
 	{
 		line = get_next_line_2(fd, &line);
 		if (!line[i] || !line)
+		{
+			free(line);
 			break ;
+		}
 		lst = ft_lst_fill_2(lst, line);
 	}
 	return (lst);
@@ -55,14 +58,15 @@ t_map	ft_text(char *file, t_map start)
 
 	fd = open(file, O_RDONLY);
 	lst = ft_lst_fill_3(fd);
+	start = ft_colours_floor(start, lst);
+	start = ft_colours_cell(start, lst);
 	start.n_texture = ft_n_texture(lst);
 	start.s_texture = ft_s_texture(lst);
 	start.e_texture = ft_e_texture(lst);
 	start.w_texture = ft_w_texture(lst);
 	start.sprite_texture = ft_sprite_texture(lst);
-	start = ft_colours_floor(start, lst);
-	start = ft_colours_cell(start, lst);
-	//ft_lstclear(&lst);
+	ft_lstclear(&lst);
+	close(fd);
 	return (start);
 }
 

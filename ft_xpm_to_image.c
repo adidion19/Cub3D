@@ -82,7 +82,7 @@ t_data	ft_xpm_to_image_sprite(t_rcst ray_info)
 	ray_info.xpm_sprite.img = mlx_xpm_file_to_image(ray_info.window.mlx,
 			ray_info.start.sprite_texture, &a, &b);
 	ray_info.xpm_sprite.addr = mlx_get_data_addr(ray_info.xpm_sprite.img,
-			&ray_info.xpm_sprite.bits_per_pixel, &ray_info.xpm_sprite.line_length,
-			&ray_info.xpm_sprite.endian);
+			&ray_info.xpm_sprite.bits_per_pixel,
+			&ray_info.xpm_sprite.line_length, &ray_info.xpm_sprite.endian);
 	return (ray_info.xpm_sprite);
 }

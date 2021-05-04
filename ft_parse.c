@@ -40,15 +40,23 @@ t_list	*ft_lst_fill(int fd)
 	char	*line;
 	t_list	*lst;
 
+	line = 0;
 	lst = 0;
-	line = get_next_line_2(fd, &line);
+	get_next_line(fd, &line);
 	while (!(ft_check_line(line)))
-		line = get_next_line_2(fd, &line);
+	{
+		if (line)
+			free(line);
+		get_next_line(fd, &line);
+	}
+	lst = ft_lstnew((void *)line);
 	while (ft_check_line(line) == 1)
 	{
-		lst = ft_lst_fill_2(lst, line);
-		line = get_next_line_2(fd, &line);
+		get_next_line(fd, &line);
+		ft_lstadd_back(&(lst), ft_lstnew((void *)line));
 	}
+	if (line)
+		free(line);
 	return (lst);
 }
 
@@ -62,9 +70,11 @@ int	ft_parse_count(char *str)
 	count = 0;
 	fd = open(str, O_RDONLY);
 	ret = get_next_line(fd, &line);
+	free(line);
 	while (1 == ret)
 	{
 		ret = get_next_line(fd, &line);
+		free(line);
 		count++;
 	}
 	return (count);
@@ -99,26 +109,21 @@ t_map	ft_parse_init(char *str)
 	int		**tab;
 
 	i = ft_parse_count(str);
-	if (!ft_test_ext(str))
-		start.ext = 1;
-	if (!ft_test_ext(str))
-		return (start);
+	ft_text_ext_2(str);
 	fd = open(str, O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error\nFile not found\n");
-		exit(-1);
-	}
+	ft_printf_and_exit(fd);
 	lst = ft_lst_fill(fd);
 	tab = ft_int_tab_fill(lst, i);
+	ft_lstclear(&lst);
 	start = ft_fill_start_struct(tab, i);
 	if (!(ft_test_map(start.tab)))
-	{
 		start.tab = 0;
+	if (!(ft_test_map(start.tab)))
 		return (start);
-	}
 	close(fd);
 	fd = open(str, O_RDONLY);
+	ft_printf_and_exit(fd);
 	start = ft_window_size(str, start, fd);
+	close(fd);
 	return (start);
 }

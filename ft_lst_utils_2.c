@@ -14,19 +14,16 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (!lst)
-		return (0);
-	while (lst->next)
-		lst = lst->next;
+	if (lst)
+		while (lst->next)
+			lst = lst->next;
 	return (lst);
 }
 
-t_list	*ft_lstnew(char *content)
+t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	if (!content)
-		return (0);
 	new = malloc(sizeof(t_list));
 	if (!(new))
 		return (0);

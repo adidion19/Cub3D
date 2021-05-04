@@ -24,20 +24,12 @@ t_rcst	ft_rcst_calculate_2(t_map start, t_rcst ray_info)
 	return (ray_info);
 }
 
-int		ft_char_to_int(char *str)
-{
-	int *i;
-
-	i = (int *)str;
-	return (*i);
-}
-
 void	ft_draw_floor_and_cell(t_rcst ray_info, int x)
 {
-	int	i;
-	int	y;
-	char str[4];
-	int j;
+	int		i;
+	int		y;
+	char	str[4];
+	int		j;
 
 	y = -1;
 	str[3] = 0;

@@ -35,6 +35,8 @@ SRCS =	ft_parse.c\
 		ft_rcst_calculate_2.c\
 		ft_sprite_casting.c\
 		ft_mlx.c\
+		ft_sprite_casting_2.c\
+		ft_sprite_casting_3.c\
 
 LIB = libmlx.a\
 

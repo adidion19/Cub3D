@@ -71,28 +71,21 @@ int	ft_key_press(int keycode, t_rcst *ray_info)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(ray_info->window.mlx, ray_info->window.win);
-		exit(EXIT_SUCCESS);
+		exit(1);
 	}
-	if (keycode == 0) // A
+	if (keycode == 0)
 		ft_go_left(ray_info);
-	if (keycode == 13 || keycode == 126) // W ^
+	if (keycode == 13 || keycode == 126)
 		ft_go_up(ray_info);
-	if (keycode == 1 || keycode == 125) // S \/
+	if (keycode == 1 || keycode == 125)
 		ft_go_down(ray_info);
-	if (keycode == 2) // D
+	if (keycode == 2)
 		ft_go_right(ray_info);
-	if (keycode == 12 || keycode == 123) // Q <
+	if (keycode == 12 || keycode == 123)
 		ft_turn_left(ray_info);
-	if (keycode == 14 || keycode == 124) // E >
+	if (keycode == 14 || keycode == 124)
 		ft_turn_right(ray_info);
 	return (0);
-}
-
-int	ft_red_press(int keycode, int i)
-{
-	keycode = 0;
-	i = 1;
-	exit(0);
 }
 
 t_rcst	ft_hook(t_rcst ray_info, t_mlx window)

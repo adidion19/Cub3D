@@ -43,8 +43,8 @@ t_rcst	ft_rcst_calculate(t_rcst ray_info, int y)
 
 t_rcst	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
 {
-	int	c;
-	double *z_buffer;
+	int		c;
+	double	*z_buffer;
 
 	c = -1;
 	z_buffer = malloc(sizeof(double) * ray_info.start.ll);
@@ -69,28 +69,6 @@ t_rcst	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
 	return (ray_info);
 }
 
-t_obj	*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info)
-{
-	int i;
-	int j;
-	int k;
-
-	i = -1;
-	k = -1;
-	while (ray_info.start.tab[++i])
-	{
-		j = -1;
-		while (ray_info.start.tab[i][++j])
-			if (ray_info.start.tab[i][j] == 2)
-			{
-				k++;
-				sprite[k].x = i + 0.5;
-				sprite[k].y = j + 0.5;
-			}
-	}
-	return (sprite);
-}
-
 t_rcst	ft_rcst_fill_2(t_mlx window, t_map start, t_rcst ray_info)
 {
 	ray_info.cam_time = 0;
@@ -106,23 +84,23 @@ t_rcst	ft_rcst_fill_2(t_mlx window, t_map start, t_rcst ray_info)
 
 t_rcst	ft_rcst_fill_1(t_mlx window, t_map start, t_rcst ray_info)
 {
-	if (start.start == 3) // N
+	if (start.start == 3)
 	{
 		ray_info.dir_x = -ray_info.plan_y;
 		ray_info.plan_y = ray_info.plan_y;
 	}
-	else if (start.start == 5) // S
+	else if (start.start == 5)
 	{
 		ray_info.dir_x = ray_info.plan_y;
 		ray_info.plan_y = -ray_info.plan_y;
 	}
-	else if (start.start == 4) // E
+	else if (start.start == 4)
 	{
 		ray_info.dir_y = ray_info.plan_y;
 		ray_info.plan_x = M_PI / 4;
 		ray_info.plan_y = 0;
 	}
-	else// W
+	else
 	{
 		ray_info.dir_y = -ray_info.plan_y;
 		ray_info.plan_x = -M_PI / 4;
@@ -130,26 +108,6 @@ t_rcst	ft_rcst_fill_1(t_mlx window, t_map start, t_rcst ray_info)
 	}
 	ray_info = ft_rcst_fill_2(window, start, ray_info);
 	return (ray_info);
-}
-
-int	ft_num_sprite(int **tab)
-{
-	int i;
-	int j;
-	int count;
-
-	i = -1;
-	count = 0;
-	if (!tab)
-		return (EXIT_FAILURE);
-	while (tab[++i])
-	{
-		j = -1;
-		while (tab[i][++j])
-			if (tab[i][j] == 2)
-				count++;
-	}
-	return (count);
 }
 
 t_rcst	ft_rcst_fill(t_mlx window, t_map start, t_rcst ray_info)

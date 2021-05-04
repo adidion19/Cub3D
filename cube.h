@@ -162,11 +162,11 @@ char			*get_next_line_2(int fd, char **line);
 int				ft_check_line(char *line);
 t_list			*ft_lst_fill(int fd);
 char			*ft_protect_2(char *s, char *buff);
-t_list			*ft_lstadd_back(t_list *alst, t_list *new);
-t_list			*ft_lstnew(char *content);
+void			ft_lstadd_back(t_list **alst, t_list *new);
+t_list			*ft_lstnew(void *content);
 t_list			*ft_lst_fill_2(t_list *lst, char *str);
 void			ft_lstadd_front(t_list **alst, t_list *new);
-void			ft_lstdelone(t_list *lst, void (*del)(void*));
+void			ft_lstdelone(t_list *lst);
 void			ft_lstiter(t_list *lst, int (*f)(const char*, ...));
 t_list			*ft_lstlast(t_list *lst);
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
@@ -220,5 +220,16 @@ t_data			ft_xpm_to_image_sprite(t_rcst ray_info);
 t_obj			*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info);
 void			ft_lstclear(t_list **lst);
 void			ft_del(void *a);
+int				ft_red_press(int keycode, int i);
+t_map			ft_screen_size(t_mlx window, t_map start);
+void			ft_printf_and_exit(int fd);
+int				ft_char_to_int(char *str);
+int				ft_num_sprite(int **tab);
+t_obj			*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info);
+void			ft_text_ext_2(char *str);
+char			*ft_strjoin_2(char *s1, char *s2);
+t_rcst			ft_sprite_casting_2(t_rcst ray_info,
+					int i, int *sprite_order, t_obj *sprite);
+int				*ft_sort_sprites(int *tab, double *distance, int size);
 
 #endif

@@ -12,6 +12,13 @@
 
 #include "cube.h"
 
+int	ft_red_press(int keycode, int i)
+{
+	keycode = 0;
+	i = 1;
+	exit(1);
+}
+
 t_rcst	*ft_go_right(t_rcst *ray_info)
 {
 	int	next_pos_x;

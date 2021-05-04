@@ -22,6 +22,21 @@ int	ft_intlen(int *a)
 	return (i);
 }
 
+int	ft_big_if(int **tab, int x_max, int i, int j)
+{
+	if (i == 0 || j == 0 || j == x_max
+		|| tab[i][j + 1] == 7 || tab[i][j - 1] == 7
+		|| tab[i + 1][j] == 7 || tab[i - 1][j] == 7
+		|| tab[i + 1][j - 1] == 7 || tab[i + 1][j + 1] == 7
+		|| tab[i - 1][j - 1] == 7 || tab[i - 1][j + 1] == 7
+		|| !tab[i][j + 1] || !tab[i][j - 1]
+		|| !tab[i + 1][j] || !tab[i - 1][j]
+		|| !tab[i + 1][j - 1] || !tab[i + 1][j + 1]
+		|| !tab[i - 1][j - 1] || !tab[i - 1][j + 1])
+		return (1);
+	return (0);
+}
+
 int	ft_test_map(int **tab)
 {
 	int	i;
@@ -40,15 +55,7 @@ int	ft_test_map(int **tab)
 		while (tab[i][++j])
 		{
 			if (tab[i][j] == 9)
-				if (i == 0 || j == 0 || j == x_max || i == y_max
-					|| tab[i][j + 1] == 7 || tab[i][j - 1] == 7
-					|| tab[i + 1][j] == 7 || tab[i - 1][j] == 7
-					|| tab[i + 1][j - 1] == 7 || tab[i + 1][j + 1] == 7
-					|| tab[i - 1][j - 1] == 7 || tab[i - 1][j + 1] == 7
-					|| !tab[i][j + 1] || !tab[i][j - 1]
-					|| !tab[i + 1][j] || !tab[i - 1][j]
-					|| !tab[i + 1][j - 1] || !tab[i + 1][j + 1]
-					|| !tab[i - 1][j - 1] || !tab[i - 1][j + 1])
+				if (ft_big_if(tab, x_max, i, j) || i == y_max)
 					return (0);
 		}
 	}
