@@ -21,7 +21,7 @@ char	*ft_r_line(t_list *lst)
 	{
 		i = 0;
 		line = lst->content;
-		while (line[i] == ' ')
+		while (line && line[i] == ' ')
 			i++;
 		if (line[i] == 'R')
 			return (line);
@@ -35,13 +35,14 @@ t_list	*ft_lst_fill_3(int fd)
 	char	*line;
 	t_list	*lst;
 	int		i;
+	int		ret;
 
 	lst = 0;
 	i = 0;
 	while (1)
 	{
-		line = get_next_line_2(fd, &line);
-		if (!line[i] || !line)
+		ret = get_next_line(fd, &line);
+		if (!ret)
 		{
 			free(line);
 			break ;

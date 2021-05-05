@@ -52,6 +52,7 @@ typedef struct s_map
 	int			cell_g;
 	int			cell_b;
 	int			ext;
+	int			save;
 }				t_map;
 
 typedef struct s_mlx
@@ -231,5 +232,11 @@ char			*ft_strjoin_2(char *s1, char *s2);
 t_rcst			ft_sprite_casting_2(t_rcst ray_info,
 					int i, int *sprite_order, t_obj *sprite);
 int				*ft_sort_sprites(int *tab, double *distance, int size);
+void			ft_bmp_save(t_rcst ray_info);
+int				ft_get_t(int trgb);
+int				ft_get_r(int trgb);
+int				ft_get_g(int trgb);
+int				ft_get_b(int trgb);
+void			ft_push_image_to_window(t_rcst ray_info, t_mlx window);
 
 #endif

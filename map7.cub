@@ -1,0 +1,19 @@
+R 1440 810
+SO ./textures/greystone.xpm
+WE ./textures/mossy.xpm
+NO ./textures/colorstone.xpm
+EA ./textures/bluestone.xpm
+
+S ./textures/barrel.xpm
+
+F 156, 204, 156
+C 195, 200, 255
+
+1111
+1001
+100111111111111111
+100020000000000001
+10000000002000W001
+111111111111111001
+              1001
+              1111

@@ -82,7 +82,8 @@ int	ft_mlx(t_map start)
 	window.mlx = mlx_init();
 	ray_info.data = ft_data_fill(ray_info.data);
 	start = ft_screen_size(window, start);
-	window.win = mlx_new_window(window.mlx, start.ll, start.l, "cub3D");
+	if (start.save == 0)
+		window.win = mlx_new_window(window.mlx, start.ll, start.l, "cub3D");
 	ray_info.data.img = mlx_new_image(window.mlx, start.ll, start.l);
 	ray_info.data.addr = mlx_get_data_addr(ray_info.data.img,
 			&ray_info.data.bits_per_pixel, &ray_info.data.line_length,
@@ -90,6 +91,8 @@ int	ft_mlx(t_map start)
 	ray_info.window = window;
 	ray_info.start = start;
 	ray_info = ft_rcst_fill(window, start, ray_info);
+	if (start.save == 1)
+		ft_bmp_save(ray_info);
 	ft_hook(ray_info, window);
 	mlx_loop(window.mlx);
 	return (1);

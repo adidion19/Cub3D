@@ -16,9 +16,17 @@ t_data	ft_xpm_to_image_n(t_rcst ray_info)
 {
 	int	a;
 	int	b;
+	int fd;
 
 	a = 64;
 	b = 64;
+	fd = open(ray_info.start.n_texture, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error\nBad texture filename\n");
+		exit(1);
+	}
+	close(fd);
 	ray_info.xpm_n.img = mlx_xpm_file_to_image(ray_info.window.mlx,
 			ray_info.start.n_texture, &a, &b);
 	ray_info.xpm_n.addr = mlx_get_data_addr(ray_info.xpm_n.img,
@@ -31,9 +39,17 @@ t_data	ft_xpm_to_image_s(t_rcst ray_info)
 {
 	int	a;
 	int	b;
+	int fd;
 
 	a = 64;
 	b = 64;
+	fd = open(ray_info.start.s_texture, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error\nBad texture filename\n");
+		exit(1);
+	}
+	close(fd);
 	ray_info.xpm_s.img = mlx_xpm_file_to_image(ray_info.window.mlx,
 			ray_info.start.s_texture, &a, &b);
 	ray_info.xpm_s.addr = mlx_get_data_addr(ray_info.xpm_s.img,
@@ -46,9 +62,17 @@ t_data	ft_xpm_to_image_e(t_rcst ray_info)
 {
 	int	a;
 	int	b;
+	int fd;
 
 	a = 64;
 	b = 64;
+	fd = open(ray_info.start.e_texture, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error\nBad texture filename\n");
+		exit(1);
+	}
+	close(fd);
 	ray_info.xpm_e.img = mlx_xpm_file_to_image(ray_info.window.mlx,
 			ray_info.start.e_texture, &a, &b);
 	ray_info.xpm_e.addr = mlx_get_data_addr(ray_info.xpm_e.img,
@@ -61,9 +85,17 @@ t_data	ft_xpm_to_image_w(t_rcst ray_info)
 {
 	int	a;
 	int	b;
+	int fd;
 
 	a = 64;
 	b = 64;
+	fd = open(ray_info.start.w_texture, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error\nBad texture filename\n");
+		exit(1);
+	}
+	close(fd);
 	ray_info.xpm_w.img = mlx_xpm_file_to_image(ray_info.window.mlx,
 			ray_info.start.w_texture, &a, &b);
 	ray_info.xpm_w.addr = mlx_get_data_addr(ray_info.xpm_w.img,
@@ -76,9 +108,17 @@ t_data	ft_xpm_to_image_sprite(t_rcst ray_info)
 {
 	int	a;
 	int	b;
+	int fd;
 
 	a = 64;
 	b = 64;
+	fd = open(ray_info.start.sprite_texture, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error\nBad texture filename\n");
+		exit(1);
+	}
+	close(fd);
 	ray_info.xpm_sprite.img = mlx_xpm_file_to_image(ray_info.window.mlx,
 			ray_info.start.sprite_texture, &a, &b);
 	ray_info.xpm_sprite.addr = mlx_get_data_addr(ray_info.xpm_sprite.img,

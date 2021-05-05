@@ -62,9 +62,7 @@ t_rcst	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
 		z_buffer[c] = ray_info.perp_wall_dist;
 	}
 	ray_info = ft_sprite_casting(ray_info, z_buffer);
-	mlx_clear_window(window.mlx, window.win);
-	mlx_put_image_to_window(window.mlx, ray_info.window.win,
-		ray_info.data.img, 0, 0);
+	ft_push_image_to_window(ray_info, window);
 	free(z_buffer);
 	return (ray_info);
 }
@@ -112,7 +110,6 @@ t_rcst	ft_rcst_fill_1(t_mlx window, t_map start, t_rcst ray_info)
 
 t_rcst	ft_rcst_fill(t_mlx window, t_map start, t_rcst ray_info)
 {
-	ft_print_tab(start.tab);
 	ray_info.sprite_num = ft_num_sprite(ray_info.start.tab);
 	ray_info.pos_x = start.x + 0.5;
 	ray_info.pos_y = start.y + 0.5;

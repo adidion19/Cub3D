@@ -37,6 +37,8 @@ SRCS =	ft_parse.c\
 		ft_mlx.c\
 		ft_sprite_casting_2.c\
 		ft_sprite_casting_3.c\
+		ft_bmp_save.c\
+		ft_convert_colors.c
 
 LIB = libmlx.a\
 
