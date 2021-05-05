@@ -16,7 +16,7 @@ t_data	ft_xpm_to_image_n(t_rcst ray_info)
 {
 	int	a;
 	int	b;
-	int fd;
+	int	fd;
 
 	a = 64;
 	b = 64;
@@ -39,7 +39,7 @@ t_data	ft_xpm_to_image_s(t_rcst ray_info)
 {
 	int	a;
 	int	b;
-	int fd;
+	int	fd;
 
 	a = 64;
 	b = 64;
@@ -62,7 +62,7 @@ t_data	ft_xpm_to_image_e(t_rcst ray_info)
 {
 	int	a;
 	int	b;
-	int fd;
+	int	fd;
 
 	a = 64;
 	b = 64;
@@ -85,7 +85,7 @@ t_data	ft_xpm_to_image_w(t_rcst ray_info)
 {
 	int	a;
 	int	b;
-	int fd;
+	int	fd;
 
 	a = 64;
 	b = 64;
@@ -108,7 +108,7 @@ t_data	ft_xpm_to_image_sprite(t_rcst ray_info)
 {
 	int	a;
 	int	b;
-	int fd;
+	int	fd;
 
 	a = 64;
 	b = 64;
