@@ -30,6 +30,10 @@ t_map	ft_triple_atoi_floor(t_map start, char *str)
 	while (str[i] == ' ' || str[i] == ',')
 		i++;
 	start.floor_b = ft_atoi(((char *)str) + i);
+	if (start.floor_b > 256 || start.floor_r > 256 || start.floor_g > 256)
+		printf("Error\nInvalid floor color\n");
+	if (start.floor_b > 256 || start.floor_r > 256 || start.floor_g > 256)
+		exit(1);
 	return (start);
 }
 
@@ -68,6 +72,10 @@ t_map	ft_triple_atoi_cell(t_map start, char *str)
 	while (str[i] == ' ' || str[i] == ',')
 		i++;
 	start.cell_b = ft_atoi(((char *)str) + i);
+	if (start.cell_b > 256 || start.cell_r > 256 || start.cell_g > 256)
+		printf("Error\nInvalid cell color\n");
+	if (start.cell_b > 256 || start.cell_r > 256 || start.cell_g > 256)
+		exit(1);
 	return (start);
 }
 

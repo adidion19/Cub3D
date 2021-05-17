@@ -23,7 +23,7 @@ t_map	ft_check_save(t_map start, char *str)
 		start.save = 1;
 		return (start);
 	}
-	printf("Error\nIf you want to save, the second argument");
+	printf("Error\nIf you want to save, the second argument ");
 	printf("should be \"--save\"\n");
 	exit(1);
 }
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 		start = ft_parse_init(av[1]);
 	else if (ac == 1 || ac > 3)
 	{
-		printf("Error\nNombre d'arguments invalide\n");
+		printf("Error\nInvalid amount of arguments\n");
 		exit(1);
 	}
 	if (ac == 3)
@@ -47,6 +47,5 @@ int	main(int ac, char **av)
 	if (ft_error(start) == 0)
 		exit(1);
 	ft_mlx(start);
-	system("leaks cub3D");
 	return (0);
 }

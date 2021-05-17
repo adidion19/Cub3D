@@ -34,7 +34,7 @@ char	*ft_strdup(const char *src)
 		i++;
 	dest = malloc(sizeof(char) * (i + 1));
 	if (!dest)
-		return (0);
+		exit(1);
 	i = -1;
 	while (src[++i])
 		dest[i] = src[i];
@@ -59,7 +59,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	len = ft_strlen((char *)s1) + ft_strlen((char *)s2);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (0);
+		exit(1);
 	while (s1[++i])
 		str[i] = s1[i];
 	j = i;
@@ -93,7 +93,7 @@ char	*get_next_line_2(int fd, char **line)
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || fd > OPEN_MAX || 1 > BUFFER_SIZE || line == 0
 		|| BUFFER_SIZE >= INT_MAX || !buff)
-		return (ft_protect_2(buff, s));
+		exit(1);
 	while (!ft_newline(s) && i != 0)
 	{
 		i = read(fd, buff, BUFFER_SIZE);

@@ -1,5 +1,4 @@
-
-R 2000 1080
+R 2080 1000
 
 NO ./textures/greystone.xpm
 SO ./textures/furnace_front_off.xpm
@@ -89,5 +88,4 @@ C 135, 245, 251
 1000001001
 1020001001
 1000001001
-1111111111
 1111111111

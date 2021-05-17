@@ -95,11 +95,10 @@ t_rcst	ft_sprite_casting(t_rcst ray_info, double *z_buffer)
 	int		*sprite_order;
 	t_obj	*sprite;
 
-	sprite = malloc(sizeof(t_obj) * ray_info.sprite_num);
+	sprite = malloc_sprite(ray_info);
 	sprite = ft_get_sprite_pos(sprite, ray_info);
-	i = -1;
-	sprite_order = malloc(sizeof(int) * ray_info.sprite_num);
-	sprite_distance = malloc(sizeof(double) * ray_info.sprite_num);
+	sprite_order = malloc_sprite_order(ray_info);
+	sprite_distance = malloc_sprite_distance(ray_info);
 	ray_info = ft_sprite_casting_3(ray_info,
 			sprite_order, sprite, sprite_distance);
 	i = -1;

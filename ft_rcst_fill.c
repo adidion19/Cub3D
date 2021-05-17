@@ -48,6 +48,8 @@ t_rcst	ft_rcst_loop(t_mlx window, t_map start, t_rcst ray_info)
 
 	c = -1;
 	z_buffer = malloc(sizeof(double) * ray_info.start.ll);
+	if (!z_buffer)
+		exit(1);
 	while (++c < start.ll)
 	{
 		ray_info.cam_x = 2 * c / (double)(start.ll) - 1;

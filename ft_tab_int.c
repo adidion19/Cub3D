@@ -45,10 +45,10 @@ int	*ft_free_tab(int **a)
 		b++;
 	}
 	free(a);
-	exit(-1);
+	exit(1);
 }
 
-int	*ft_fill_one_entry(char *str, int **a)
+int	*ft_fill_one_entry(char *str)
 {
 	int	*tab;
 	int	i;
@@ -60,7 +60,7 @@ int	*ft_fill_one_entry(char *str, int **a)
 	j = ft_strlen(str);
 	tab = malloc(sizeof(int) * j + 1);
 	if (!tab)
-		return (ft_free_tab(a));
+		exit(1);
 	while (str[i])
 	{
 		tab[i] = ft_value_int(str[i]);
@@ -77,11 +77,11 @@ int	**ft_int_tab_fill(t_list *lst, int i)
 
 	tab = malloc(sizeof(int *) * i + 1);
 	if (!tab)
-		exit(0);
+		exit(1);
 	a = 0;
 	while (lst)
 	{
-		tab[a] = ft_fill_one_entry(lst->content, tab);
+		tab[a] = ft_fill_one_entry(lst->content);
 		lst = lst->next;
 		a++;
 	}

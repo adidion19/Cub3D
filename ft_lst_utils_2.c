@@ -26,7 +26,7 @@ t_list	*ft_lstnew(void *content)
 
 	new = malloc(sizeof(t_list));
 	if (!(new))
-		return (0);
+		exit(1);
 	new->content = content;
 	new->next = 0;
 	return (new);

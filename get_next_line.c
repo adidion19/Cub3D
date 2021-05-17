@@ -47,7 +47,7 @@ char	*ft_static(char *s)
 	}
 	str = malloc(sizeof(char) * (ft_strlen(s) - i));
 	if (!str)
-		get_next_line(-1, &s);
+		exit(1);
 	i++;
 	while (s[i])
 		str[j++] = s[i++];
@@ -68,7 +68,7 @@ char	*ft_line(char *s)
 		i++;
 	str = malloc(sizeof(char) * (i + 1));
 	if (!str)
-		get_next_line(-1, &s);
+		exit(1);
 	i = 0;
 	while (s[i] && s[i] != '\n')
 	{
@@ -98,7 +98,7 @@ int	get_next_line(int fd, char **line)
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || fd > OPEN_MAX || 1 > BUFFER_SIZE || line == 0
 		|| BUFFER_SIZE >= INT_MAX || !buff)
-		return (ft_protect(buff, s));
+		exit(1);
 	while (!ft_newline(s) && i != 0)
 	{
 		i = read(fd, buff, BUFFER_SIZE);

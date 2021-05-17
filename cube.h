@@ -174,7 +174,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 int				ft_lstsize(t_list *lst);
 int				**ft_int_tab_fill(t_list *lst, int i);
-int				*ft_fill_one_entry(char *str, int **a);
+int				*ft_fill_one_entry(char *str);
 int				ft_value_int(char c);
 int				*ft_free_tab(int **a);
 t_map			ft_fill_start_struct(int **tab, int a);
@@ -238,5 +238,8 @@ int				ft_get_r(int trgb);
 int				ft_get_g(int trgb);
 int				ft_get_b(int trgb);
 void			ft_push_image_to_window(t_rcst ray_info, t_mlx window);
+double			*malloc_sprite_distance(t_rcst ray_info);
+int				*malloc_sprite_order(t_rcst ray_info);
+t_obj			*malloc_sprite(t_rcst ray_info);
 
 #endif

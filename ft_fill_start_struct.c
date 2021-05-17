@@ -35,7 +35,7 @@ char	*ft_strjoin_2(char *s1, char *s2)
 	len = ft_strlen((char *)s1) + ft_strlen((char *)s2);
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (0);
+		exit(1);
 	while (s1[++i])
 		str[i] = s1[i];
 	j = i;

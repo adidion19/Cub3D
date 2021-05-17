@@ -55,3 +55,33 @@ t_obj	*ft_get_sprite_pos(t_obj *sprite, t_rcst ray_info)
 	}
 	return (sprite);
 }
+
+t_obj	*malloc_sprite(t_rcst ray_info)
+{
+	t_obj	*sprite;
+
+	sprite = malloc(sizeof(t_obj) * ray_info.sprite_num);
+	if (!sprite)
+		exit(1);
+	return (sprite);
+}
+
+int	*malloc_sprite_order(t_rcst ray_info)
+{
+	int	*sprite_order;
+
+	sprite_order = malloc(sizeof(int) * ray_info.sprite_num);
+	if (!sprite_order)
+		exit(1);
+	return (sprite_order);
+}
+
+double	*malloc_sprite_distance(t_rcst ray_info)
+{
+	double	*sprite_distance;
+
+	sprite_distance = malloc(sizeof(double) * ray_info.sprite_num);
+	if (!sprite_distance)
+		exit(1);
+	return (sprite_distance);
+}

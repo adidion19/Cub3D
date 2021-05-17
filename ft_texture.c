@@ -22,13 +22,18 @@ char	*ft_n_texture(t_list *lst)
 		i = 0;
 		line = ft_strjoin_2("", lst->content);
 		if (line && line[i++] == 'N')
+		{
 			if (line[i++] == 'O')
-				if (line[i++] == ' ')
-					break ;
+			{
+				while (line[i++] == ' ')
+					;
+				break ;
+			}
+		}
 		lst = lst->next;
 		free(line);
 	}
-	return (((char *)line) + i);
+	return (((char *)line) + i - 1);
 }
 
 char	*ft_s_texture(t_list *lst)
@@ -41,13 +46,18 @@ char	*ft_s_texture(t_list *lst)
 		i = 0;
 		line = ft_strjoin_2("", lst->content);
 		if (line && line[i++] == 'S')
+		{
 			if (line[i++] == 'O')
-				if (line[i++] == ' ')
-					break ;
+			{
+				while (line[i++] == ' ')
+					;
+				break ;
+			}
+		}
 		lst = lst->next;
 		free(line);
 	}
-	return (((char *)line) + i);
+	return (((char *)line) + i - 1);
 }
 
 char	*ft_e_texture(t_list *lst)
@@ -60,13 +70,18 @@ char	*ft_e_texture(t_list *lst)
 		i = 0;
 		line = ft_strjoin_2("", lst->content);
 		if (line && line[i++] == 'E')
+		{
 			if (line[i++] == 'A')
-				if (line[i++] == ' ')
-					break ;
+			{
+				while (line[i++] == ' ')
+					;
+				break ;
+			}
+		}
 		lst = lst->next;
 		free(line);
 	}
-	return (((char *)line) + i);
+	return (((char *)line) + i - 1);
 }
 
 char	*ft_w_texture(t_list *lst)
@@ -79,13 +94,18 @@ char	*ft_w_texture(t_list *lst)
 		i = 0;
 		line = ft_strjoin_2("", lst->content);
 		if (line && line[i++] == 'W')
+		{
 			if (line[i++] == 'E')
-				if (line[i++] == ' ')
-					break ;
+			{
+				while (line[i++] == ' ')
+					;
+				break ;
+			}
+		}
 		lst = lst->next;
 		free(line);
 	}
-	return (((char *)line) + i);
+	return (((char *)line) + i - 1);
 }
 
 char	*ft_sprite_texture(t_list *lst)
@@ -98,10 +118,16 @@ char	*ft_sprite_texture(t_list *lst)
 		i = 0;
 		line = ft_strjoin_2("", lst->content);
 		if (line[i++] == 'S')
-			if (line && line[i++] == ' ')
+		{
+			if (line[i++] == ' ')
+			{
+				while (line[i++] == ' ')
+					;
 				break ;
+			}
+		}
 		lst = lst->next;
 		free(line);
 	}
-	return (((char *)line) + i);
+	return (((char *)line) + i - 1);
 }
