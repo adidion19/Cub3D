@@ -16,6 +16,7 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 {
 	t_list	*tmp;
 
+	tmp = 0;
 	if (alst)
 	{
 		if (*alst == NULL)
@@ -40,6 +41,7 @@ void	ft_lstclear(t_list **lst)
 {
 	t_list	*old_elem;
 
+	old_elem = 0;
 	while (*lst)
 	{
 		free((*lst)->content);

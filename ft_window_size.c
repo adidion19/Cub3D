@@ -78,6 +78,7 @@ t_map	ft_window_size(char *file, t_map start, int fd)
 	int		i;
 
 	i = 0;
+	lst = 0;
 	lst = ft_lst_fill_3(fd);
 	str = ft_r_line(lst);
 	while (str[i] && (str[i] == ' ' || str[i] == 'R'))
