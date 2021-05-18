@@ -69,6 +69,7 @@ int	ft_parse_count(char *str)
 
 	count = 0;
 	fd = open(str, O_RDONLY);
+	ft_printf_and_exit(fd);
 	ret = get_next_line(fd, &line);
 	free(line);
 	while (1 == ret)
@@ -108,6 +109,7 @@ t_map	ft_parse_init(char *str)
 	t_map	start;
 	int		**tab;
 
+	lst = 0;
 	i = ft_parse_count(str);
 	ft_text_ext_2(str);
 	fd = open(str, O_RDONLY);
