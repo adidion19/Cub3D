@@ -42,7 +42,7 @@ t_list	*ft_lst_fill_3(int fd)
 	while (1)
 	{
 		ret = get_next_line(fd, &line);
-		if (!ret)
+		if (!ret && line)
 		{
 			free(line);
 			break ;

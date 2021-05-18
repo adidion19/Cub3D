@@ -71,11 +71,13 @@ int	ft_parse_count(char *str)
 	fd = open(str, O_RDONLY);
 	ft_printf_and_exit(fd);
 	ret = get_next_line(fd, &line);
-	free(line);
+	if (line)
+		free(line);
 	while (1 == ret)
 	{
 		ret = get_next_line(fd, &line);
-		free(line);
+		if (line)
+			free(line);
 		count++;
 	}
 	return (count);

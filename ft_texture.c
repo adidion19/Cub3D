@@ -31,7 +31,8 @@ char	*ft_n_texture(t_list *lst)
 			}
 		}
 		lst = lst->next;
-		free(line);
+		if (line)
+			free(line);
 	}
 	return (((char *)line) + i - 1);
 }
@@ -55,7 +56,8 @@ char	*ft_s_texture(t_list *lst)
 			}
 		}
 		lst = lst->next;
-		free(line);
+		if (line)
+			free(line);
 	}
 	return (((char *)line) + i - 1);
 }
@@ -79,7 +81,8 @@ char	*ft_e_texture(t_list *lst)
 			}
 		}
 		lst = lst->next;
-		free(line);
+		if (line)
+			free(line);
 	}
 	return (((char *)line) + i - 1);
 }
@@ -103,7 +106,8 @@ char	*ft_w_texture(t_list *lst)
 			}
 		}
 		lst = lst->next;
-		free(line);
+		if (line)
+			free(line);
 	}
 	return (((char *)line) + i - 1);
 }
@@ -127,7 +131,8 @@ char	*ft_sprite_texture(t_list *lst)
 			}
 		}
 		lst = lst->next;
-		free(line);
+		if (line)
+			free(line);
 	}
 	return (((char *)line) + i - 1);
 }

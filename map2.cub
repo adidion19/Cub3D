@@ -1,20 +1,14 @@
-R 800 800
-
-NO ./textures/bluestone.xpm
-SO ./textures/colorstone.xpm
-WE ./textures/greystone.xpm
-EA ./textures/pillar.xpm
+R 1440 810
+SO ./textures/greystone.xpm
+WE ./textures/mossy.xpm
+NO ./textures/colorstone.xpm
+EA ./textures/bluestone.xpm
 
 S ./textures/barrel.xpm
 
-F 124, 142, 12
-C 12, 220, 125
+F 156, 204, 156
+C 195, 200, 255
 
-1111111111
-1000000001
-111100E001
-1000000001
-1000001000
-1020001001
-1000001001
-1111111111
+111
+1N1
+111

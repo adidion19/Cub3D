@@ -39,6 +39,8 @@ int	*ft_free_tab(int **a)
 	int	b;
 
 	b = 0;
+	if (!a)
+		exit(1);
 	while (a[b])
 	{
 		free(a[b]);
