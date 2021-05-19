@@ -54,7 +54,8 @@ int	ft_test_map(int **tab)
 		j = -1;
 		while (tab[i][++j])
 		{
-			if (tab[i][j] == 9)
+			if (tab[i][j] == 9 || tab[i][j] == 3 || tab[i][j] == 4 || tab[i][j] == 5
+				|| tab[i][j] == 6)
 			{
 				if (!ft_big_if(tab, x_max, i, j) || i == y_max)
 					printf("Error\nInvalid map\n");
